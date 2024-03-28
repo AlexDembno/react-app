@@ -1,0 +1,26 @@
+.wrapper {
+  padding: 20px;
+}
+
+.wrapperName {
+  display: flex;
+  align-items: center;
+}
+.status {
+  padding: 20px;
+  height: 10px;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #007fff;
+  border-radius: 25px / 50%;
+}
+
+.status:hover {
+  background-color: #0066cc;
+}
+
+.medium {
+  text-align: center;
+}

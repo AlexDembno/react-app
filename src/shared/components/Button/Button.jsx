@@ -1,11 +1,14 @@
 import * as React from "react";
-import DeleteIcon from "@mui/icons-material/Delete";
 import Button from "@mui/material/Button";
 
-export default function ButtonUsage({ startIcon, variant, props }) {
-  console.log(Button);
+export default function ButtonUsage({ onClick, startIcon, variant, props }) {
   return (
-    <Button startIcon={startIcon} variant={variant} size="small">
+    <Button
+      onClick={onClick}
+      startIcon={startIcon}
+      variant={variant}
+      size="small"
+    >
       {props}
     </Button>
   );

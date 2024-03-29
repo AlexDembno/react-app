@@ -2,19 +2,27 @@ import ButtonUsage from "../../shared/components/Button/Button";
 import Edit from "@mui/icons-material/Edit";
 import styles from "./CreateNewList.module.css";
 
-const CreateNewList = () => {
+const CreateNewList = ({ setNewList }) => {
   return (
     <div className={styles.box}>
-      <div className={styles.wrapperName}>
-        <p>Task name</p>
-        <ButtonUsage
-          startIcon={<Edit />}
-          props={"Edit task"}
-          variant={"outlined"}
-        />
-      </div>
+      <button
+        className={styles.button}
+        onClick={() => setNewList(false)}
+        type="button"
+      >
+        X
+      </button>
+
       <div className={styles.wrapper}>
         <div>
+          <div className={styles.wrapperName}>
+            <p>Task name</p>
+            <ButtonUsage
+              startIcon={<Edit />}
+              props={"Edit task"}
+              variant={"outlined"}
+            />
+          </div>
           <p>Status</p>
           <p>In progress</p>
           <p>Due date</p>

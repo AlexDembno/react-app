@@ -15,18 +15,20 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <h1>My Task Bord</h1>
-      <ButtonUsage
-        startIcon={<ThreeSixtyIcon />}
-        variant={"outlined"}
-        props={"History"}
-      />
-      <ButtonUsage
-        startIcon={<Add />}
-        variant={"contained"}
-        props={"Create new list"}
-        onClick={changeNewList}
-      />
-      {newList && <CreateNewList />}
+      <div className={styles.wrapperButton}>
+        <ButtonUsage
+          startIcon={<ThreeSixtyIcon />}
+          variant={"outlined"}
+          props={"History"}
+        />
+        <ButtonUsage
+          startIcon={<Add />}
+          variant={"contained"}
+          props={"Create new list"}
+          onClick={changeNewList}
+        />
+      </div>
+      {newList && <CreateNewList setNewList={setNewList} />}
     </header>
   );
 };

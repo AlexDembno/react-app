@@ -7,11 +7,25 @@ import styles from "./ToDoBlock.module.css";
 import { useState } from "react";
 
 const ToDoBlock = () => {
-  const [task, setTask] = useState(0);
-  console.log(task);
+  const [tasks, setTasks] = useState([]);
+  console.log(tasks);
+
   const addTask = () => {
-    setTask((prevState) => prevState + 1);
+    setTasks([...tasks, <Task />]);
   };
+
+  // const listTask = () =>
+  //   tasks.map((task, index) => (
+  //     <li key={index}>
+  //       <TasksName name={task} />
+  //     </li>
+  //   ));
+
+  const listTasks = tasks.map((task, index) => (
+    <li className={styles.list} key={index}>
+      {task}
+    </li>
+  ));
 
   return (
     <div className={styles.box}>
@@ -22,9 +36,7 @@ const ToDoBlock = () => {
         props={"Add new card"}
         onClick={addTask}
       />
-      <TaskBox>
-        <Task />
-      </TaskBox>
+      <ul className={styles.taskWrapper}>{listTasks}</ul>
     </div>
   );
 };

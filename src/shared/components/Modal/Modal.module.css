@@ -22,7 +22,7 @@
   max-height: calc(100vh - 128px);
   transform: translate(-50%, 0);
   border-radius: 16px;
-  border: 1px solid var(--Stroke, #f0f0f0);
+  border: 1px solid #007bff;
   background: var(--White, #fff);
   overflow-x: auto;
 
@@ -43,5 +43,12 @@
 
 .modal--centered {
   top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.button {
+  position: absolute;
+  bottom: 90%;
+  left: 95%;
   transform: translate(-50%, -50%);
 }

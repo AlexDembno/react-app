@@ -8,7 +8,9 @@ import { useState } from "react";
 import { addTask } from "../../redux/tasks/tasksSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { modalIsOpen } from "../../redux/modal/modalSlice";
+import { modalIsOpen, modalIsClose } from "../../redux/modal/modalSlice";
+import Modal from "../../shared/components/Modal/Modal";
+import CreateNewTask from "../CreateNewTask/CreateNewTask";
 
 const PlannedBlock = () => {
   const dispatch = useDispatch();
@@ -19,6 +21,10 @@ const PlannedBlock = () => {
 
   const handleAddTask = () => {
     dispatch(modalIsOpen(true));
+  };
+
+  const handlCloseModal = () => {
+    dispatch(modalIsClose(false));
   };
 
   // const listTask = () =>
@@ -44,6 +50,11 @@ const PlannedBlock = () => {
         onClick={handleAddTask}
       />
       <ul className={styles.taskWrapper}>{listTasks}</ul>
+      {modal && (
+        <Modal closeModal={handlCloseModal}>
+          <CreateNewTask />
+        </Modal>
+      )}
     </div>
   );
 };

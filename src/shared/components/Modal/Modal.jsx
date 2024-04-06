@@ -1,7 +1,8 @@
 import { useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
-import Button from "../Button";
-import styles from "./Modal.module.scss";
+import ButtonUsage from "../Button/Button";
+import Edit from "@mui/icons-material/Edit";
+import styles from "./Modal.module.css";
 
 const modalEl = document.querySelector("#modal-root");
 
@@ -35,12 +36,9 @@ const Modal = ({
         } ${className ? className : ""}`}
       >
         {children}
-        <Button
-          mode="close"
-          size="md"
-          onClick={closeModal}
-          className={buttonClassName}
-        />
+        <button className={styles.button} onClick={closeModal} type="button">
+          X
+        </button>
       </div>
     </div>,
     modalEl

@@ -8,18 +8,19 @@ const tasksSlice = createSlice({
   initialState: tasksInitialState,
 
   reducers: {
-    addTask(state, action) {
-      console.log("action.payload", action.payload);
-      state.push(action.payload);
-    },
-    prepare(text) {
-      return {
-        payload: {
-          text,
-          id: nanoid(),
-          completed: false,
-        },
-      };
+    addTask: {
+      reducer(state, action) {
+        console.log(action.payload);
+        state.push(action.payload);
+      },
+      prepare(tasks) {
+        return {
+          payload: {
+            ...tasks,
+            id: nanoid(),
+          },
+        };
+      },
     },
 
     deleteTask(state, action) {},

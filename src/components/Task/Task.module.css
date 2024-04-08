@@ -5,6 +5,23 @@
 .wrapperName {
   display: flex;
   align-items: center;
+  max-width: 150px;
+}
+
+.title {
+  font-weight: 300;
+  font-size: 12;
+  max-width: 150px;
+  overflow: hidden;
+  word-wrap: break-word; /* Переносить текст на новую строку при необходимости */
+}
+
+.text {
+  font-weight: 300;
+  font-size: 12;
+  max-width: 150px;
+  overflow: hidden;
+  word-wrap: break-word; /* Переносить текст на новую строку при необходимости */
 }
 
 .status {

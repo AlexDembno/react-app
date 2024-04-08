@@ -6,8 +6,7 @@ import Task from "../Task/Task";
 import styles from "./ToDoBlock.module.css";
 import { useState } from "react";
 import { addTask } from "../../redux/tasks/tasksSlice";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { modalIsOpen, modalIsClose } from "../../redux/modal/modalSlice";
 import Modal from "../../shared/components/Modal/Modal";
 import CreateNewTask from "../CreateNewTask/CreateNewTask";
@@ -34,9 +33,9 @@ const PlannedBlock = () => {
   //     </li>
   //   ));
 
-  const listTasks = tasks.map((task, index) => (
-    <li className={styles.list} key={index}>
-      <Task />
+  const listTasks = tasks.map(({ id, tasks }) => (
+    <li className={styles.list} key={id}>
+      <Task tasks={tasks} />
     </li>
   ));
 

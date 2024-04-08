@@ -5,7 +5,7 @@ import { tasksReducer } from "./tasks/tasksSlice";
 import { modalReducer } from "./modal/modalSlice";
 
 const persistConfig = {
-  key: "root",
+  key: "tasks",
   storage,
 };
 

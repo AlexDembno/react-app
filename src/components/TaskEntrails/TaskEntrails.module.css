@@ -1,0 +1,21 @@
+.box {
+  width: 150px;
+  border: 1px solid #007fff;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.taskWrapper {
+  margin-top: 10px;
+}
+
+.taskWrapper:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.list {
+  border: 1px solid #007fff;
+  border-radius: 2%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

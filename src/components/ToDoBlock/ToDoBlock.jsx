@@ -1,43 +1,57 @@
 import TasksName from "../../shared/components/TasksName/TasksName";
 import ButtonUsage from "../../shared/components/Button/Button";
 import Add from "@mui/icons-material/Add";
-import TaskBox from "../../shared/components/TaskBox/TaskBox";
 import Task from "../Task/Task";
 import styles from "./ToDoBlock.module.css";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { modalIsOpen, modalIsClose } from "../../redux/modal/modalSlice";
+import Modal from "../../shared/components/Modal/Modal";
+import CreateNewTask from "../CreateNewTask/CreateNewTask";
+
+import TaskEntrails from "../TaskEntrails/TaskEntrails";
 
 const ToDoBlock = () => {
-  const [tasks, setTasks] = useState([]);
-  console.log(tasks);
+  // const dispatch = useDispatch();
+  // const tasks = useSelector((state) => state.tasks);
+  // const modal = useSelector((state) => state.modal.toChangeStatusModal);
+  // console.log(tasks);
+  // console.log(modal);
 
-  const addTask = () => {
-    setTasks([...tasks, <Task />]);
-  };
+  // const handleAddTask = () => {
+  //   dispatch(modalIsOpen(true));
+  // };
 
-  // const listTask = () =>
-  //   tasks.map((task, index) => (
-  //     <li key={index}>
-  //       <TasksName name={task} />
-  //     </li>
-  //   ));
+  // const handlCloseModal = () => {
+  //   dispatch(modalIsClose(false));
+  // };
 
-  const listTasks = tasks.map((task, index) => (
-    <li className={styles.list} key={index}>
-      {task}
-    </li>
-  ));
+  // const filteredTasks = tasks.filter(({ tasks }) => tasks.status === "ToDo");
+
+  // console.log("filteredTasks", filteredTasks);
+
+  // const listTasks = filteredTasks.map(({ id, tasks }) => (
+  //   <li className={styles.list} key={id}>
+  //     <Task tasks={tasks} />
+  //   </li>
+  // ));
 
   return (
-    <div className={styles.box}>
-      <TasksName name={"ToDo"} />
+    <>
+      {/* <TasksName name={"ToDo"} />
       <ButtonUsage
         startIcon={<Add />}
         variant={"outlined"}
         props={"Add new card"}
-        onClick={addTask}
+        onClick={handleAddTask}
       />
       <ul className={styles.taskWrapper}>{listTasks}</ul>
-    </div>
+      {modal && (
+        <Modal closeModal={handlCloseModal}>
+          <CreateNewTask />
+        </Modal>
+      )} */}
+      <TaskEntrails taskStatus={"ToDo"} />;
+    </>
   );
 };
 

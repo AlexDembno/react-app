@@ -23,7 +23,11 @@ const tasksSlice = createSlice({
       },
     },
 
-    deleteTask(state, action) {},
+    deleteTask(state, action) {
+      console.log("action.payload", action.payload);
+      const index = state.findIndex((task) => task.id === action.payload);
+      state.splice(index, 1);
+    },
     toggleCompleted(state, action) {},
   },
 });

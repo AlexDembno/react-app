@@ -15,6 +15,7 @@ export default function ButtonUsage({
       variant={variant}
       size="small"
       onSubmit={onSubmit}
+      disableElevation={true}
     >
       {props}
     </Button>

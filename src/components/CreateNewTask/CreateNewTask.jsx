@@ -34,6 +34,7 @@ const CreateNewTask = () => {
           initialValues={{
             tasks: {
               name: "",
+              status: "",
               description: "",
               priority: "",
               startDate: startDate,
@@ -64,7 +65,52 @@ const CreateNewTask = () => {
                   <div className={styles.error}>{errors.tasks.name}</div>
                 )}
               </label>
-
+              <div id="my-radio-group">Status</div>
+              <div
+                className={styles.radio}
+                role="group"
+                aria-labelledby="my-radio-group"
+              >
+                <label>
+                  <Field
+                    type="radio"
+                    name="tasks.status"
+                    value="ToDo"
+                    validate={validate}
+                  />
+                  ToDo
+                </label>
+                <label>
+                  <Field
+                    type="radio"
+                    name="tasks.status"
+                    value="Planned"
+                    validate={validate}
+                  />
+                  Plannen
+                </label>
+                <label>
+                  <Field
+                    type="radio"
+                    name="tasks.status"
+                    value="In progress"
+                    validate={validate}
+                  />
+                  In progress
+                </label>
+                {errors.tasks && errors.tasks.name && (
+                  <div className={styles.error}>{errors.tasks.name}</div>
+                )}
+                <label>
+                  <Field
+                    type="radio"
+                    name="tasks.status"
+                    value="Close"
+                    validate={validate}
+                  />
+                  Close
+                </label>
+              </div>
               <label>
                 Task description
                 <Field
@@ -101,6 +147,7 @@ const CreateNewTask = () => {
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
               />
+
               <button className={styles.button} type="submit">
                 Submit
               </button>

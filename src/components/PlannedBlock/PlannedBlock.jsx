@@ -1,47 +1,43 @@
 import TasksName from "../../shared/components/TasksName/TasksName";
 import ButtonUsage from "../../shared/components/Button/Button";
 import Add from "@mui/icons-material/Add";
-import TaskBox from "../../shared/components/TaskBox/TaskBox";
 import Task from "../Task/Task";
 import styles from "./ToDoBlock.module.css";
-import { useState } from "react";
-import { addTask } from "../../redux/tasks/tasksSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { modalIsOpen, modalIsClose } from "../../redux/modal/modalSlice";
 import Modal from "../../shared/components/Modal/Modal";
 import CreateNewTask from "../CreateNewTask/CreateNewTask";
 
+import TaskEntrails from "../TaskEntrails/TaskEntrails";
+
 const PlannedBlock = () => {
-  const dispatch = useDispatch();
-  const tasks = useSelector((state) => state.tasks);
-  const modal = useSelector((state) => state.modal.toChangeStatusModal);
-  console.log(tasks);
-  console.log(modal);
+  // const dispatch = useDispatch();
+  // const tasks = useSelector((state) => state.tasks);
+  // const modal = useSelector((state) => state.modal.toChangeStatusModal);
+  // console.log(tasks);
+  // console.log(modal);
 
-  const handleAddTask = () => {
-    dispatch(modalIsOpen(true));
-  };
+  // const handleAddTask = () => {
+  //   dispatch(modalIsOpen(true));
+  // };
 
-  const handlCloseModal = () => {
-    dispatch(modalIsClose(false));
-  };
+  // const handlCloseModal = () => {
+  //   dispatch(modalIsClose(false));
+  // };
 
-  // const listTask = () =>
-  //   tasks.map((task, index) => (
-  //     <li key={index}>
-  //       <TasksName name={task} />
-  //     </li>
-  //   ));
+  // const filteredTasks = tasks.filter(({ tasks }) => tasks.status === "Planned");
 
-  const listTasks = tasks.map(({ id, tasks }) => (
-    <li className={styles.list} key={id}>
-      <Task tasks={tasks} />
-    </li>
-  ));
+  // console.log("filteredTasks", filteredTasks);
+
+  // const listTasks = filteredTasks.map(({ id, tasks }) => (
+  //   <li className={styles.list} key={id}>
+  //     <Task tasks={tasks} />
+  //   </li>
+  // ));
 
   return (
-    <div className={styles.box}>
-      <TasksName name={"Planned"} />
+    <>
+      {/* <TasksName name={"Planned"} />
       <ButtonUsage
         startIcon={<Add />}
         variant={"outlined"}
@@ -53,8 +49,9 @@ const PlannedBlock = () => {
         <Modal closeModal={handlCloseModal}>
           <CreateNewTask />
         </Modal>
-      )}
-    </div>
+      )} */}
+      <TaskEntrails taskStatus={"Planned"} />;
+    </>
   );
 };
 

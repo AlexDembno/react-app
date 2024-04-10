@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useDispatch } from "react-redux";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
@@ -6,14 +7,21 @@ import Edit from "@mui/icons-material/Edit";
 import Add from "@mui/icons-material/Add";
 import Delete from "@mui/icons-material/Delete";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { deleteTask } from "../../../redux/tasks/tasksSlice";
 
 export default function BasicMenu({ ...props }) {
+  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleDelete = () => {
+    dispatch(deleteTask(props.id));
     setAnchorEl(null);
   };
 
@@ -48,7 +56,7 @@ export default function BasicMenu({ ...props }) {
             Add new card
           </MenuItem>
         )}
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleDelete}>
           <Delete />
           Delete
         </MenuItem>

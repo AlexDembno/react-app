@@ -1,61 +1,55 @@
-import ButtonUsage from "../../shared/components/Button/Button";
-import Edit from "@mui/icons-material/Edit";
+import { useDispatch } from "react-redux";
+import { Formik, Form, Field } from "formik";
+import { addListTask } from "../../redux/taskList/taskListSlice";
 import styles from "./CreateNewList.module.css";
 
-const CreateNewList = ({ setNewList }) => {
+const CreateNewList = ({ closeModal }) => {
+  const dispatch = useDispatch();
+  const validate = (value) => {
+    let errorMessage;
+    if (!value) {
+      errorMessage = "Required";
+    }
+    return errorMessage;
+  };
   return (
     <div className={styles.box}>
-      <button
-        className={styles.button}
-        onClick={() => setNewList(false)}
-        type="button"
-      >
-        X
-      </button>
+      <h2 className={styles.text}>Create New List</h2>
+      <div>
+        <Formik
+          initialValues={{
+            name: "",
+          }}
+          onSubmit={(values, formikBag) => {
+            dispatch(
+              addListTask({
+                ...values,
+              })
+            );
+            formikBag.resetForm();
+            closeModal();
+          }}
+        >
+          {({ errors, touched, isValidating }) => (
+            <Form className={styles.wrapperForm}>
+              <label>
+                Name
+                <Field
+                  className={styles.input}
+                  name="name"
+                  validate={validate}
+                />
+                {errors.tasks && errors.list.name && (
+                  <div className={styles.error}>{errors.list.name}</div>
+                )}
+              </label>
 
-      <div className={styles.wrapper}>
-        <div>
-          <div className={styles.wrapperName}>
-            <p>Task name</p>
-            <ButtonUsage
-              startIcon={<Edit />}
-              props={"Edit task"}
-              variant={"outlined"}
-            />
-          </div>
-          <p>Status</p>
-          <p>In progress</p>
-          <p>Due date</p>
-          <p>Web, 28 April</p>
-          <p>Priority</p>
-          <p>Low</p>
-          <p>Description</p>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem quod
-            saepe.
-          </p>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem quod
-            saepe.
-          </p>
-        </div>
-        <div>
-          <p>Activity</p>
-          <ul>
-            <li>
-              <p>You created this task</p>
-              <p>Mar 5 at 5:10 pm</p>
-            </li>
-            <li>
-              <p>You changes status from To Do to In Progress</p>
-              <p>Mar 5 at 5:10 pm</p>
-            </li>
-            <li>
-              <p>You renamed this task from Task Name 1 to Nask Name 2</p>
-              <p>Mar 5 at 5:10 pm</p>
-            </li>
-          </ul>
-        </div>
+              <button className={styles.button} type="submit">
+                Create
+              </button>
+            </Form>
+          )}
+        </Formik>
       </div>
     </div>
   );

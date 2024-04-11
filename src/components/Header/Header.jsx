@@ -5,11 +5,20 @@ import styles from "./Header.module.css";
 import ThreeSixtyIcon from "@mui/icons-material/ThreeSixty";
 import Add from "@mui/icons-material/Add";
 import CreateNewList from "../CreateNewList/CreateNewList";
+import { useDispatch, useSelector } from "react-redux";
+import { modalIsOpen, modalIsClose } from "../../redux/modal/modalSlice";
+import Modal from "../../shared/components/Modal/Modal";
+import useModal from "../../shared/hooks/useModal";
 
 const Header = () => {
-  const [newList, setNewList] = useState(false);
-  const changeNewList = () => {
-    setNewList(true);
+  const { isOpen, openModal, closeModal } = useModal();
+
+  const handleAddTask = () => {
+    openModal();
+  };
+
+  const handlCloseModal = () => {
+    closeModal();
   };
 
   return (
@@ -25,10 +34,14 @@ const Header = () => {
           startIcon={<Add />}
           variant={"contained"}
           props={"Create new list"}
-          onClick={changeNewList}
+          onClick={handleAddTask}
         />
       </div>
-      {newList && <CreateNewList setNewList={setNewList} />}
+      {isOpen && (
+        <Modal closeModal={handlCloseModal}>
+          <CreateNewList closeModal={handlCloseModal} />
+        </Modal>
+      )}
     </header>
   );
 };

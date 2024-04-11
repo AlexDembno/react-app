@@ -6,7 +6,7 @@ const TasksName = ({ ...props }) => {
     <div className={styles.menu}>
       <p>{props.name}</p>
       <p>{props.quantity}</p>
-      <BasicMenu />
+      <BasicMenu listId={props.listId} />
     </div>
   );
 };

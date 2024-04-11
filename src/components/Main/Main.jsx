@@ -1,38 +1,34 @@
-import TasksName from "../../shared/components/TasksName/TasksName";
+import React, { createContext } from "react";
+import { useSelector } from "react-redux";
+import TaskEntrails from "../TaskEntrails/TaskEntrails";
+
 import styles from "./Main.module.css";
-import { tasks } from "./tasks";
-import ButtonUsage from "../../shared/components/Button/Button";
-import Add from "@mui/icons-material/Add";
-import TaskBox from "../../shared/components/TaskBox/TaskBox";
-import Task from "../Task/Task";
-import ToDoBlock from "../ToDoBlock/ToDoBlock";
-import ClosedBlock from "../ClosedBlock/ClosedBlock";
-import PlannedBlock from "../PlannedBlock/PlannedBlock";
-import InProgressBlock from "../InProgressBlock/InProgressBlock";
+
+export const TaskListContext = createContext();
+
+const TaskListProvider = ({ children, taskListData }) => {
+  return (
+    <TaskListContext.Provider value={taskListData}>
+      {children}
+    </TaskListContext.Provider>
+  );
+};
 
 const Main = () => {
-  // const listTasksName = tasks.map((task, index) => (
-  //   <li key={index}>
-  //     <TasksName name={task} />
-  //   </li>
-  // ));
+  const tasksList = useSelector((state) => state.tasksList);
+  console.log("tasksList", tasksList);
 
-  // const listButtonUsage = tasks.map((index) => (
-  //   <li key={index}>
-  //     <ButtonUsage
-  //       startIcon={<Add />}
-  //       variant={"outlined"}
-  //       props={"Add new card"}
-  //     />
-  //   </li>
-  // ));
+  const list = tasksList.map(({ id, name }) => (
+    <li className={styles.list} key={id}>
+      <TaskListProvider taskListData={id}>
+        <TaskEntrails taskStatus={name} listId={id} ListName={name} />
+      </TaskListProvider>
+    </li>
+  ));
 
   return (
     <main className={styles.wrapper}>
-      <ToDoBlock />
-      <PlannedBlock />
-      <InProgressBlock />
-      <ClosedBlock />
+      <ul className={styles.wrapper}>{list}</ul>
     </main>
   );
 };

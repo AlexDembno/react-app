@@ -3,24 +3,32 @@ import ButtonUsage from "../../shared/components/Button/Button";
 import Add from "@mui/icons-material/Add";
 import Task from "../Task/Task";
 import styles from "./TaskEntrails.module.css";
+import React, { createContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { modalIsOpen, modalIsClose } from "../../redux/modal/modalSlice";
 import Modal from "../../shared/components/Modal/Modal";
 import CreateNewTask from "../CreateNewTask/CreateNewTask";
+import useModal from "../../shared/hooks/useModal";
 
-const TaskEntrails = ({ taskStatus }) => {
-  const dispatch = useDispatch();
+export const TaskContext = createContext();
+
+const TaskProvider = ({ children, taskData }) => {
+  return (
+    <TaskContext.Provider value={taskData}>{children}</TaskContext.Provider>
+  );
+};
+
+const TaskEntrails = ({ taskStatus, listId, ListName }) => {
+  const { isOpen, openModal, closeModal } = useModal();
   const tasks = useSelector((state) => state.tasks);
-  const modal = useSelector((state) => state.modal.toChangeStatusModal);
-  console.log(tasks);
-  console.log(modal);
 
   const handleAddTask = () => {
-    dispatch(modalIsOpen(true));
+    openModal();
+    console.log("modal is open task");
   };
 
   const handlCloseModal = () => {
-    dispatch(modalIsClose(false));
+    closeModal();
   };
 
   const filteredTasks = tasks.filter(
@@ -31,13 +39,15 @@ const TaskEntrails = ({ taskStatus }) => {
 
   const listTasks = filteredTasks.map(({ id, tasks }) => (
     <li className={styles.list} key={id}>
-      <Task tasks={tasks} id={id} />
+      <TaskProvider taskData={id}>
+        <Task tasks={tasks} id={id} />
+      </TaskProvider>
     </li>
   ));
 
   return (
     <div className={styles.box}>
-      <TasksName name={taskStatus} />
+      <TasksName name={taskStatus} listId={listId} />
       <ButtonUsage
         startIcon={<Add />}
         variant={"outlined"}
@@ -45,9 +55,9 @@ const TaskEntrails = ({ taskStatus }) => {
         onClick={handleAddTask}
       />
       <ul className={styles.taskWrapper}>{listTasks}</ul>
-      {modal && (
+      {isOpen && (
         <Modal closeModal={handlCloseModal}>
-          <CreateNewTask />
+          <CreateNewTask closeModal={handlCloseModal} ListName={ListName} />
         </Modal>
       )}
     </div>

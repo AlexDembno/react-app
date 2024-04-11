@@ -10,7 +10,6 @@ const tasksSlice = createSlice({
   reducers: {
     addTask: {
       reducer(state, action) {
-        console.log(action.payload);
         state.push(action.payload);
       },
       prepare(tasks) {
@@ -24,7 +23,6 @@ const tasksSlice = createSlice({
     },
 
     deleteTask(state, action) {
-      console.log("action.payload", action.payload);
       const index = state.findIndex((task) => task.id === action.payload);
       state.splice(index, 1);
     },

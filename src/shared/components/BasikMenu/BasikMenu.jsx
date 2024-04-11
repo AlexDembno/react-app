@@ -8,8 +8,16 @@ import Add from "@mui/icons-material/Add";
 import Delete from "@mui/icons-material/Delete";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { deleteTask } from "../../../redux/tasks/tasksSlice";
+import { TaskListContext } from "../../../components/Main/Main";
+import { TaskContext } from "../../../components/TaskEntrails/TaskEntrails";
+import { deleteListTask } from "../../../redux/taskList/taskListSlice";
 
 export default function BasicMenu({ ...props }) {
+  // Компонент, использующий контекст
+  const taskListData = React.useContext(TaskListContext);
+  const taskData = React.useContext(TaskContext);
+  // Используйте данные из контекста здесь
+
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -21,8 +29,16 @@ export default function BasicMenu({ ...props }) {
   };
 
   const handleDelete = () => {
-    dispatch(deleteTask(props.id));
-    setAnchorEl(null);
+    if (taskListData) {
+      console.log("taskListData", taskListData);
+      dispatch(deleteListTask(taskListData));
+      setAnchorEl(null);
+    }
+    if (taskData) {
+      console.log("taskData", taskData);
+      dispatch(deleteTask(taskData));
+      setAnchorEl(null);
+    }
   };
 
   return (

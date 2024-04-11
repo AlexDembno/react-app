@@ -3,13 +3,12 @@ import { Formik, Form, Field } from "formik";
 import { addTask } from "../../redux/tasks/tasksSlice";
 import { useDispatch } from "react-redux";
 import DatePicker from "react-datepicker";
-import { modalIsClose } from "../../redux/modal/modalSlice";
 import { format } from "date-fns";
 
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./CreateNewTask.module.css";
 
-const CreateNewTask = () => {
+const CreateNewTask = ({ closeModal, ListName }) => {
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(new Date());
 
@@ -34,7 +33,7 @@ const CreateNewTask = () => {
           initialValues={{
             tasks: {
               name: "",
-              status: "",
+              status: ListName,
               description: "",
               priority: "",
               startDate: startDate,
@@ -49,7 +48,7 @@ const CreateNewTask = () => {
               })
             );
             formikBag.resetForm();
-            dispatch(modalIsClose(false));
+            closeModal();
           }}
         >
           {({ errors, touched, isValidating }) => (
@@ -65,8 +64,9 @@ const CreateNewTask = () => {
                   <div className={styles.error}>{errors.tasks.name}</div>
                 )}
               </label>
-              <div id="my-radio-group">Status</div>
-              <div
+              {/* <div id="my-radio-group">Status</div> */}
+
+              {/* <div
                 className={styles.radio}
                 role="group"
                 aria-labelledby="my-radio-group"
@@ -110,7 +110,7 @@ const CreateNewTask = () => {
                   />
                   Close
                 </label>
-              </div>
+              </div> */}
               <label>
                 Task description
                 <Field

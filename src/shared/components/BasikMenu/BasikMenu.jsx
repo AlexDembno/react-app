@@ -12,10 +12,10 @@ import { TaskListContext } from "../../../components/Main/Main";
 import { TaskContext } from "../../../components/TaskEntrails/TaskEntrails";
 import { deleteListTask } from "../../../redux/taskList/taskListSlice";
 
-export default function BasicMenu({ ...props }) {
+export default function BasicMenu({ name, taskId }) {
   // Компонент, использующий контекст
   const taskListData = React.useContext(TaskListContext);
-  const taskData = React.useContext(TaskContext);
+
   // Используйте данные из контекста здесь
 
   const dispatch = useDispatch();
@@ -29,14 +29,15 @@ export default function BasicMenu({ ...props }) {
   };
 
   const handleDelete = () => {
-    if (taskListData) {
-      console.log("taskListData", taskListData);
+    console.log("props.listId", taskListData);
+    console.log("props.taskId", taskId);
+
+    if (taskListData && !taskId) {
       dispatch(deleteListTask(taskListData));
       setAnchorEl(null);
     }
-    if (taskData) {
-      console.log("taskData", taskData);
-      dispatch(deleteTask(taskData));
+    if (taskId && taskListData) {
+      dispatch(deleteTask(taskId));
       setAnchorEl(null);
     }
   };
@@ -66,7 +67,7 @@ export default function BasicMenu({ ...props }) {
           <Edit />
           Edit
         </MenuItem>
-        {!props.name && (
+        {!name && (
           <MenuItem onClick={handleClose}>
             <Add />
             Add new card

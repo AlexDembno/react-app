@@ -21,7 +21,7 @@ const Main = () => {
   const list = tasksList.map(({ id, name }) => (
     <li className={styles.list} key={id}>
       <TaskListProvider taskListData={id}>
-        <TaskEntrails taskStatus={name} listId={id} ListName={name} />
+        <TaskEntrails taskStatus={name} ListName={name} />
       </TaskListProvider>
     </li>
   ));

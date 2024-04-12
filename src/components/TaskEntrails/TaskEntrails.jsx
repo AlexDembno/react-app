@@ -10,14 +10,6 @@ import Modal from "../../shared/components/Modal/Modal";
 import CreateNewTask from "../CreateNewTask/CreateNewTask";
 import useModal from "../../shared/hooks/useModal";
 
-export const TaskContext = createContext();
-
-const TaskProvider = ({ children, taskData }) => {
-  return (
-    <TaskContext.Provider value={taskData}>{children}</TaskContext.Provider>
-  );
-};
-
 const TaskEntrails = ({ taskStatus, listId, ListName }) => {
   const { isOpen, openModal, closeModal } = useModal();
   const tasks = useSelector((state) => state.tasks);
@@ -39,9 +31,7 @@ const TaskEntrails = ({ taskStatus, listId, ListName }) => {
 
   const listTasks = filteredTasks.map(({ id, tasks }) => (
     <li className={styles.list} key={id}>
-      <TaskProvider taskData={id}>
-        <Task tasks={tasks} id={id} />
-      </TaskProvider>
+      <Task tasks={tasks} taskId={id} />
     </li>
   ));
 

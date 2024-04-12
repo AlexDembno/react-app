@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { Select as BaseSelect, selectClasses } from "@mui/base/Select";
 
@@ -7,6 +8,13 @@ import { styled } from "@mui/system";
 import UnfoldMoreRoundedIcon from "@mui/icons-material/UnfoldMoreRounded";
 
 export default function SelectMove() {
+  const tasksList = useSelector((state) => state.tasksList);
+  console.log("tasksList", tasksList);
+  const options = tasksList.map((list) => (
+    <li key={list.id}>
+      <Option value={0}>{list.name}</Option>
+    </li>
+  ));
   return (
     <Select
       defaultValue={10}
@@ -17,10 +25,7 @@ export default function SelectMove() {
         return `${option.label} (${option.value})`;
       }}
     >
-      <Option value={0}>To Do</Option>
-      <Option value={10}>Planed</Option>
-      <Option value={20}>In Progress</Option>
-      <Option value={30}>Closed</Option>
+      <ul>{options}</ul>
     </Select>
   );
 }

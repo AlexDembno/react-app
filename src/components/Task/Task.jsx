@@ -3,12 +3,12 @@ import SelectMove from "../../shared/components/Select/Select";
 import styles from "./Task.module.css";
 import CalendarMonth from "@mui/icons-material/CalendarMonthOutlined";
 
-const Task = ({ tasks, id }) => {
+const Task = ({ tasks, taskId }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.wrapperName}>
         <h2 className={styles.title}>{tasks.name}</h2>
-        <BasicMenu name={"Add new card"} id={id} />
+        <BasicMenu name={"Add new card"} taskId={taskId} />
       </div>
       <p className={styles.text}>{tasks.description}</p>
       <div className={styles.wrapperDate}>
@@ -20,7 +20,7 @@ const Task = ({ tasks, id }) => {
           <span className={styles.medium}>{tasks.priority}</span>
         </div>
       )}
-      <SelectMove />
+      <SelectMove tasks={tasks} />
     </div>
   );
 };

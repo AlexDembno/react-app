@@ -23,14 +23,24 @@ const tasksSlice = createSlice({
     },
 
     deleteTask(state, action) {
-      const index = state.findIndex((task) => task.id === action.payload);
-      state.splice(index, 1);
+      return state.filter((task) => task.id !== action.payload);
     },
-    toggleCompleted(state, action) {},
+    changeStatus(state, action) {
+      const index = state.findIndex((task) => task.id === action.payload.id);
+      const result = state.find((task) => task.id === action.payload.id);
+      const updatedTask = {
+        ...result,
+        status: action.payload.name,
+      };
+      return [...state.slice(0, index), updatedTask, ...state.slice(index + 1)];
+    },
+    editTask(state, action) {
+      console.log(action.payload);
+    },
   },
 });
 
-// Генератори екшенів
-export const { addTask, deleteTask, toggleCompleted } = tasksSlice.actions;
-// Редюсер слайсу
+export const { addTask, deleteTask, changeStatus, editTask } =
+  tasksSlice.actions;
+
 export const tasksReducer = tasksSlice.reducer;

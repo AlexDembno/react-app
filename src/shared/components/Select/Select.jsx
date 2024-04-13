@@ -1,20 +1,30 @@
 import * as React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { Select as BaseSelect, selectClasses } from "@mui/base/Select";
-
+import { changeStatus } from "../../../redux/tasks/tasksSlice";
 import { Option as BaseOption, optionClasses } from "@mui/base/Option";
 import { styled } from "@mui/system";
 import UnfoldMoreRoundedIcon from "@mui/icons-material/UnfoldMoreRounded";
 
-export default function SelectMove() {
+export default function SelectMove({ taskId }) {
+  const dispatch = useDispatch();
   const tasksList = useSelector((state) => state.tasksList);
-  console.log("tasksList", tasksList);
+
+  const changeList = (id, name) => {
+    dispatch(changeStatus({ id, name }));
+  };
+
   const options = tasksList.map((list) => (
-    <li key={list.id}>
-      <Option value={0}>{list.name}</Option>
-    </li>
+    <Option
+      key={list.id}
+      value={0}
+      onClick={() => changeList(taskId, list.name)}
+    >
+      {list.name}
+    </Option>
   ));
+
   return (
     <Select
       defaultValue={10}

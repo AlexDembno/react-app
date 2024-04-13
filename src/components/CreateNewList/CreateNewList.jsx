@@ -38,6 +38,7 @@ const CreateNewList = ({ closeModal }) => {
                   className={styles.input}
                   name="name"
                   validate={validate}
+                  maxLength={20}
                 />
                 {errors.tasks && errors.list.name && (
                   <div className={styles.error}>{errors.list.name}</div>

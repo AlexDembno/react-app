@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
-import { addTask } from "../../redux/tasks/tasksSlice";
+import { addTask, editTask } from "../../redux/tasks/tasksSlice";
 import { useDispatch } from "react-redux";
 import DatePicker from "react-datepicker";
 import { format } from "date-fns";
@@ -8,7 +8,7 @@ import { format } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./CreateNewTask.module.css";
 
-const CreateNewTask = ({ closeModal, ListName }) => {
+const CreateNewTask = ({ name, closeModal, ListName, taskId }) => {
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(new Date());
 
@@ -27,25 +27,22 @@ const CreateNewTask = ({ closeModal, ListName }) => {
 
   return (
     <div className={styles.box}>
-      <h2 className={styles.text}>CreateNewTask</h2>
+      <h2 className={styles.text}>{name}</h2>
       <div>
         <Formik
           initialValues={{
-            tasks: {
-              name: "",
-              status: ListName,
-              description: "",
-              priority: "",
-              startDate: startDate,
-            },
+            name: "",
+            status: ListName,
+            description: "",
+            priority: "",
+            startDate: startDate,
           }}
           onSubmit={(values, formikBag) => {
             const formattedStartDate = formatDate(startDate);
             dispatch(
-              addTask({
-                ...values,
-                tasks: { ...values.tasks, startDate: formattedStartDate },
-              })
+              name === "Create New Task"
+                ? addTask({ ...values, startDate: formattedStartDate })
+                : editTask({ taskId, ...values, startDate: formattedStartDate })
             );
             formikBag.resetForm();
             closeModal();
@@ -57,88 +54,60 @@ const CreateNewTask = ({ closeModal, ListName }) => {
                 Task name
                 <Field
                   className={styles.input}
-                  name="tasks.name"
+                  name="name"
                   validate={validate}
+                  maxLength={20}
+                  placeholder={errors && errors.name}
                 />
-                {errors.tasks && errors.tasks.name && (
-                  <div className={styles.error}>{errors.tasks.name}</div>
-                )}
               </label>
-              {/* <div id="my-radio-group">Status</div> */}
 
-              {/* <div
-                className={styles.radio}
-                role="group"
-                aria-labelledby="my-radio-group"
-              >
-                <label>
-                  <Field
-                    type="radio"
-                    name="tasks.status"
-                    value="ToDo"
-                    validate={validate}
-                  />
-                  ToDo
-                </label>
-                <label>
-                  <Field
-                    type="radio"
-                    name="tasks.status"
-                    value="Planned"
-                    validate={validate}
-                  />
-                  Plannen
-                </label>
-                <label>
-                  <Field
-                    type="radio"
-                    name="tasks.status"
-                    value="In progress"
-                    validate={validate}
-                  />
-                  In progress
-                </label>
-                {errors.tasks && errors.tasks.name && (
-                  <div className={styles.error}>{errors.tasks.name}</div>
-                )}
-                <label>
-                  <Field
-                    type="radio"
-                    name="tasks.status"
-                    value="Close"
-                    validate={validate}
-                  />
-                  Close
-                </label>
-              </div> */}
               <label>
                 Task description
                 <Field
                   className={styles.input}
-                  name="tasks.description"
+                  name="description"
                   validate={validate}
+                  maxLength={50}
+                  placeholder={errors && errors.name}
                 />
-                {errors.tasks && errors.tasks.description && (
-                  <div className={styles.error}>{errors.tasks.description}</div>
-                )}
               </label>
 
-              <div id="my-radio-group">Priority</div>
+              <div className={styles.radio} id="my-radio-group">
+                Priority
+              </div>
+              {errors && errors.priority && (
+                <div className={styles.error}>{errors.priority}</div>
+              )}
               <div
                 className={styles.radio}
                 role="group"
                 aria-labelledby="my-radio-group"
               >
                 <label>
-                  <Field type="radio" name="tasks.priority" value="Low" />
+                  <Field
+                    type="radio"
+                    name="priority"
+                    value="Low"
+                    validate={validate}
+                  />
                   Low
                 </label>
                 <label>
-                  <Field type="radio" name="tasks.priority" value="Medium" />
+                  <Field
+                    type="radio"
+                    name="priority"
+                    value="Medium"
+                    validate={validate}
+                  />
                   Medium
                 </label>
                 <label>
-                  <Field type="radio" name="tasks.priority" value="High" />
+                  <Field
+                    type="radio"
+                    name="priority"
+                    value="High"
+                    validate={validate}
+                  />
                   High
                 </label>
               </div>

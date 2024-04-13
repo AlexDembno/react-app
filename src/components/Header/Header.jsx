@@ -1,19 +1,17 @@
 import React from "react";
-import { useState } from "react";
 import ButtonUsage from "../../shared/components/Button/Button";
 import styles from "./Header.module.css";
 import ThreeSixtyIcon from "@mui/icons-material/ThreeSixty";
 import Add from "@mui/icons-material/Add";
 import CreateNewList from "../CreateNewList/CreateNewList";
-import { useDispatch, useSelector } from "react-redux";
-import { modalIsOpen, modalIsClose } from "../../redux/modal/modalSlice";
+
 import Modal from "../../shared/components/Modal/Modal";
 import useModal from "../../shared/hooks/useModal";
 
 const Header = () => {
   const { isOpen, openModal, closeModal } = useModal();
 
-  const handleAddTask = () => {
+  const handleAddTaskList = () => {
     openModal();
   };
 
@@ -23,20 +21,20 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      <h1>My Task Bord</h1>
-      <div className={styles.wrapperButton}>
-        <ButtonUsage
-          startIcon={<ThreeSixtyIcon />}
-          variant={"outlined"}
-          props={"History"}
-        />
-        <ButtonUsage
-          startIcon={<Add />}
-          variant={"contained"}
-          props={"Create new list"}
-          onClick={handleAddTask}
-        />
-      </div>
+      <h1 className={styles.title}>My Task Bord</h1>
+      <ButtonUsage
+        startIcon={<ThreeSixtyIcon />}
+        variant={"outlined"}
+        props={"History"}
+        style={{ marginRight: "5px" }}
+      />
+      <ButtonUsage
+        startIcon={<Add />}
+        variant={"contained"}
+        props={"Create new list"}
+        onClick={handleAddTaskList}
+      />
+
       {isOpen && (
         <Modal closeModal={handlCloseModal}>
           <CreateNewList closeModal={handlCloseModal} />

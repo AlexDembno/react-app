@@ -1,18 +1,10 @@
 import { useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
-import ButtonUsage from "../Button/Button";
-import Edit from "@mui/icons-material/Edit";
 import styles from "./Modal.module.css";
 
 const modalEl = document.querySelector("#modal-root");
 
-const Modal = ({
-  closeModal,
-  centered,
-  className,
-  buttonClassName,
-  children,
-}) => {
+const Modal = ({ closeModal, centered, className, children }) => {
   const closeModalOnClick = useCallback(
     ({ key, target, currentTarget }) => {
       if (key === "Escape" || target === currentTarget) {

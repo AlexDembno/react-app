@@ -9,10 +9,21 @@ import Delete from "@mui/icons-material/Delete";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { deleteTask } from "../../../redux/tasks/tasksSlice";
 import { TaskListContext } from "../../../components/Main/Main";
-import { TaskContext } from "../../../components/TaskEntrails/TaskEntrails";
 import { deleteListTask } from "../../../redux/taskList/taskListSlice";
+import useModal from "../../hooks/useModal";
+import Modal from "../Modal/Modal";
+import CreateNewTask from "../../../components/CreateNewTask/CreateNewTask";
 
-export default function BasicMenu({ name, taskId }) {
+export default function BasicMenu({ name, taskId, handleAddTaskList }) {
+  const { isOpen, openModal, closeModal } = useModal();
+
+  const handleAddTask = () => {
+    openModal();
+  };
+
+  const handlCloseModal = () => {
+    closeModal();
+  };
   // Компонент, использующий контекст
   const taskListData = React.useContext(TaskListContext);
 
@@ -24,14 +35,22 @@ export default function BasicMenu({ name, taskId }) {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  const handleAdd = () => {
+    handleAddTaskList();
+    setAnchorEl(null);
+  };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
 
-  const handleDelete = () => {
-    console.log("props.listId", taskListData);
-    console.log("props.taskId", taskId);
+  const handleEdit = () => {
+    handleAddTask();
+    console.log("taskId", taskId);
+    setAnchorEl(null);
+  };
 
+  const handleDelete = () => {
     if (taskListData && !taskId) {
       dispatch(deleteListTask(taskListData));
       setAnchorEl(null);
@@ -49,6 +68,7 @@ export default function BasicMenu({ name, taskId }) {
         aria-controls={open ? "basic-menu" : undefined}
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
+        edge="end"
         onClick={handleClick}
       >
         <MoreVertIcon />
@@ -63,14 +83,16 @@ export default function BasicMenu({ name, taskId }) {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose}>
-          <Edit />
-          Edit
-        </MenuItem>
+        {name && (
+          <MenuItem onClick={handleEdit}>
+            <Edit />
+            Edit
+          </MenuItem>
+        )}
         {!name && (
-          <MenuItem onClick={handleClose}>
+          <MenuItem onClick={handleAdd}>
             <Add />
-            Add new card
+            Add new list
           </MenuItem>
         )}
         <MenuItem onClick={handleDelete}>
@@ -78,6 +100,15 @@ export default function BasicMenu({ name, taskId }) {
           Delete
         </MenuItem>
       </Menu>
+      {isOpen && (
+        <Modal closeModal={handlCloseModal}>
+          <CreateNewTask
+            closeModal={handlCloseModal}
+            name={"Edit Task"}
+            taskId={taskId}
+          />
+        </Modal>
+      )}
     </div>
   );
 }

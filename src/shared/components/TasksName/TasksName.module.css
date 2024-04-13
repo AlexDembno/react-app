@@ -14,3 +14,7 @@
 .menu:hover {
   background-color: #0066cc;
 }
+
+.wrapper {
+  margin-left: auto;
+}

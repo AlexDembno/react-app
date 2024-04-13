@@ -7,6 +7,8 @@ export default function ButtonUsage({
   variant,
   props,
   onSubmit,
+  width,
+  style,
 }) {
   return (
     <Button
@@ -16,6 +18,8 @@ export default function ButtonUsage({
       size="small"
       onSubmit={onSubmit}
       disableElevation={true}
+      fullWidth={width}
+      style={style}
     >
       {props}
     </Button>

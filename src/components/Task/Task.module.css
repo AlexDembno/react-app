@@ -2,11 +2,14 @@
   padding: 10px;
 }
 
+.wrapper:last-of-type {
+  margin-left: auto;
+}
+
 .wrapperName {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 150px;
   margin-bottom: 10px;
 }
 

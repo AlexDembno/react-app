@@ -1,9 +1,9 @@
 .header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 
-.wrapperButton:not(:last-child) {
-  margin-right: 5px;
+.title {
+  margin-right: auto;
 }

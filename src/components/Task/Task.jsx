@@ -20,7 +20,11 @@ const Task = ({ tasks, taskId }) => {
           <span className={styles.medium}>{tasks.priority}</span>
         </div>
       )}
-      <SelectMove tasks={tasks} />
+      <SelectMove
+        tasks={tasks}
+        taskId={taskId}
+        className={styles.lastSelectMove}
+      />
     </div>
   );
 };

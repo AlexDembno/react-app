@@ -35,7 +35,18 @@ const tasksSlice = createSlice({
       return [...state.slice(0, index), updatedTask, ...state.slice(index + 1)];
     },
     editTask(state, action) {
-      console.log(action.payload);
+      const altTask = state.find((task) => task.id === action.payload.taskId);
+      const newTask = {
+        ...altTask,
+        name: action.payload?.name || altTask.name,
+        description: action.payload?.description || altTask.description,
+        priority: action.payload?.priority || altTask.priority,
+        startDate: action.payload?.startDate || altTask.startDate,
+      };
+      const index = state.findIndex(
+        (task) => task.id === action.payload.taskId
+      );
+      return [...state.slice(0, index), newTask, ...state.slice(index + 1)];
     },
   },
 });

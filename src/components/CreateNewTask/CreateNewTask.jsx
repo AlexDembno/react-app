@@ -8,9 +8,9 @@ import { format } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./CreateNewTask.module.css";
 
-const CreateNewTask = ({ name, closeModal, ListName, taskId }) => {
+const CreateNewTask = ({ actionName, closeModal, ListName, taskId }) => {
   const dispatch = useDispatch();
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState("");
 
   const validate = (value) => {
     let errorMessage;
@@ -21,13 +21,15 @@ const CreateNewTask = ({ name, closeModal, ListName, taskId }) => {
   };
 
   const formatDate = (date) => {
-    // return format(date, "yyyy-MM-dd HH:mm:ss");
+    if (!date) {
+      return "";
+    }
     return format(date, "yyyy-MM-dd");
   };
 
   return (
     <div className={styles.box}>
-      <h2 className={styles.text}>{name}</h2>
+      <h2 className={styles.text}>{actionName}</h2>
       <div>
         <Formik
           initialValues={{
@@ -35,14 +37,18 @@ const CreateNewTask = ({ name, closeModal, ListName, taskId }) => {
             status: ListName,
             description: "",
             priority: "",
-            startDate: startDate,
+            startDate: startDate || "",
           }}
           onSubmit={(values, formikBag) => {
             const formattedStartDate = formatDate(startDate);
             dispatch(
-              name === "Create New Task"
-                ? addTask({ ...values, startDate: formattedStartDate })
-                : editTask({ taskId, ...values, startDate: formattedStartDate })
+              actionName === "Create New Task"
+                ? addTask({ ...values, startDate: formattedStartDate || "" })
+                : editTask({
+                    taskId,
+                    ...values,
+                    startDate: formattedStartDate || "",
+                  })
             );
             formikBag.resetForm();
             closeModal();
@@ -55,7 +61,9 @@ const CreateNewTask = ({ name, closeModal, ListName, taskId }) => {
                 <Field
                   className={styles.input}
                   name="name"
-                  validate={validate}
+                  validate={
+                    actionName === "Create New Task" ? validate : undefined
+                  }
                   maxLength={20}
                   placeholder={errors && errors.name}
                 />
@@ -66,7 +74,9 @@ const CreateNewTask = ({ name, closeModal, ListName, taskId }) => {
                 <Field
                   className={styles.input}
                   name="description"
-                  validate={validate}
+                  validate={
+                    actionName === "Create New Task" ? validate : undefined
+                  }
                   maxLength={50}
                   placeholder={errors && errors.name}
                 />
@@ -88,7 +98,9 @@ const CreateNewTask = ({ name, closeModal, ListName, taskId }) => {
                     type="radio"
                     name="priority"
                     value="Low"
-                    validate={validate}
+                    validate={
+                      actionName === "Create New Task" ? validate : undefined
+                    }
                   />
                   Low
                 </label>
@@ -97,7 +109,9 @@ const CreateNewTask = ({ name, closeModal, ListName, taskId }) => {
                     type="radio"
                     name="priority"
                     value="Medium"
-                    validate={validate}
+                    validate={
+                      actionName === "Create New Task" ? validate : undefined
+                    }
                   />
                   Medium
                 </label>
@@ -106,7 +120,9 @@ const CreateNewTask = ({ name, closeModal, ListName, taskId }) => {
                     type="radio"
                     name="priority"
                     value="High"
-                    validate={validate}
+                    validate={
+                      actionName === "Create New Task" ? validate : undefined
+                    }
                   />
                   High
                 </label>

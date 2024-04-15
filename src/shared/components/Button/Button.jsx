@@ -10,6 +10,10 @@ export default function ButtonUsage({
   width,
   style,
 }) {
+  const buttonStyle = {
+    ...style,
+    width: width,
+  };
   return (
     <Button
       onClick={onClick}
@@ -18,8 +22,8 @@ export default function ButtonUsage({
       size="small"
       onSubmit={onSubmit}
       disableElevation={true}
-      fullWidth={width}
-      style={style}
+      width={width}
+      style={buttonStyle}
     >
       {props}
     </Button>

@@ -7,15 +7,17 @@ const Task = ({ tasks, taskId }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.wrapperName}>
-        <h2 className={styles.title}>{tasks.name}</h2>
+        <h2 className={styles.title}>{tasks?.name}</h2>
         <BasicMenu name={"Add new card"} taskId={taskId} />
       </div>
-      <p className={styles.text}>{tasks.description}</p>
-      <div className={styles.wrapperDate}>
-        <CalendarMonth />
-        <p className={styles.textDate}>{tasks.startDate}</p>
-      </div>
-      {tasks.priority && (
+      <p className={styles.text}>{tasks?.description}</p>
+      {tasks?.startDate && (
+        <div className={styles.wrapperDate}>
+          <CalendarMonth />
+          <p className={styles.textDate}>{tasks?.startDate}</p>
+        </div>
+      )}
+      {tasks?.priority && (
         <div className={styles.status}>
           <span className={styles.medium}>{tasks.priority}</span>
         </div>

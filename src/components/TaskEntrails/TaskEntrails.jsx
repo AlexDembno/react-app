@@ -51,7 +51,7 @@ const TaskEntrails = ({ taskStatus, listId, ListName }) => {
           <CreateNewTask
             closeModal={handlCloseModal}
             ListName={ListName}
-            name={"Create New Task"}
+            actionName={"Create New Task"}
           />
         </Modal>
       )}

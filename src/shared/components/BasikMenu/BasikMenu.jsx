@@ -24,9 +24,8 @@ export default function BasicMenu({ name, taskId, handleAddTaskList }) {
   const handlCloseModal = () => {
     closeModal();
   };
-  // Компонент, использующий контекст
+
   const { taskListData, taskListNameData } = React.useContext(TaskListContext);
-  // Используйте данные из контекста здесь
 
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -45,7 +44,6 @@ export default function BasicMenu({ name, taskId, handleAddTaskList }) {
 
   const handleEdit = () => {
     handleAddTask();
-    console.log("taskId", taskId);
     setAnchorEl(null);
   };
 

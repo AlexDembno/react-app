@@ -11,7 +11,6 @@ import styles from "./TaskEntrails.module.scss";
 const TaskEntrails = ({ taskStatus, listId, ListName }) => {
   const { isOpen, openModal, closeModal } = useModal();
   const tasks = useSelector((state) => state.tasks);
-  console.log("tasks", tasks);
 
   const handleAddTask = () => {
     openModal();
@@ -22,8 +21,6 @@ const TaskEntrails = ({ taskStatus, listId, ListName }) => {
   };
 
   const filteredTasks = tasks.filter((tasks) => tasks.status === taskStatus);
-
-  console.log("filteredTasks", filteredTasks);
 
   const listTasks = filteredTasks.map((task) => (
     <li className={styles.list} key={task.id}>

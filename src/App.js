@@ -1,13 +1,17 @@
-import Header from "./components/Header/Header";
-import Main from "./components/Main/Main";
-import styles from "./App.module.css";
+import { Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage/HomePage";
+import TaskPage from "./pages/TaskPage/TaskPage";
+import NotFoundPage from "./pages/HomePage/NotFoundPage/NotFoundPage";
 
 function App() {
   return (
-    <div className={styles.wrapper}>
-      <Header />
-      <Main />
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/tasks" element={<TaskPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </>
   );
 }
 

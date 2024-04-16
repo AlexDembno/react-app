@@ -1,0 +1,24 @@
+.wrapperPage {
+  background-image: url("../../shared/images/My\ first\ design_upscayl_4x_realesrgan-x4plus.png");
+  background-size: 70% 100%;
+  background-color: #cac1c1;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.link {
+  padding: 9px;
+  font-size: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  color: black;
+  border: 5px solid rgb(210, 211, 154);
+  background-color: #fff;
+  border-radius: 10%;
+  position: absolute;
+  top: 21%;
+  left: 64.2%;
+  transform: translate(-50%);
+}

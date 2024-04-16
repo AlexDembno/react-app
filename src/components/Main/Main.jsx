@@ -16,7 +16,6 @@ const TaskListProvider = ({ children, taskListData, taskListNameData }) => {
 
 const Main = () => {
   const tasksList = useSelector((state) => state.tasksList);
-  console.log("tasksList", tasksList);
 
   const list = tasksList.map(({ id, name }) => (
     <li className={styles.list} key={id}>

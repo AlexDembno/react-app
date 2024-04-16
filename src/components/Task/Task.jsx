@@ -1,7 +1,7 @@
 import BasicMenu from "../../shared/components/BasikMenu/BasikMenu";
 import SelectMove from "../../shared/components/Select/Select";
-import styles from "./Task.module.css";
 import CalendarMonth from "@mui/icons-material/CalendarMonthOutlined";
+import styles from "./Task.module.scss";
 
 const Task = ({ tasks, taskId }) => {
   return (

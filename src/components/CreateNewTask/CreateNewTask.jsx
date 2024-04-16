@@ -6,7 +6,7 @@ import DatePicker from "react-datepicker";
 import { format } from "date-fns";
 
 import "react-datepicker/dist/react-datepicker.css";
-import styles from "./CreateNewTask.module.css";
+import styles from "./CreateNewTask.module.scss";
 
 const CreateNewTask = ({ actionName, closeModal, ListName, taskId }) => {
   const dispatch = useDispatch();

@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { Formik, Form, Field } from "formik";
 import { addListTask } from "../../redux/taskList/taskListSlice";
-import styles from "./CreateNewList.module.css";
+import styles from "./CreateNewList.module.scss";
 
 const CreateNewList = ({ closeModal }) => {
   const dispatch = useDispatch();

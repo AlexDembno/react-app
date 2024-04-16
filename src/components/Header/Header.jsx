@@ -1,6 +1,6 @@
 import React from "react";
 import ButtonUsage from "../../shared/components/Button/Button";
-import styles from "./Header.module.css";
+import styles from "./Header.module.scss";
 import ThreeSixtyIcon from "@mui/icons-material/ThreeSixty";
 import Add from "@mui/icons-material/Add";
 import CreateNewList from "../CreateNewList/CreateNewList";

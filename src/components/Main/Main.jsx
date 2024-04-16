@@ -2,7 +2,7 @@ import React, { createContext } from "react";
 import { useSelector } from "react-redux";
 import TaskEntrails from "../TaskEntrails/TaskEntrails";
 
-import styles from "./Main.module.css";
+import styles from "./Main.module.scss";
 
 export const TaskListContext = createContext();
 

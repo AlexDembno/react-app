@@ -2,7 +2,7 @@ import BasicMenu from "../BasikMenu/BasikMenu";
 import useModal from "../../hooks/useModal";
 import Modal from "../Modal/Modal";
 import CreateNewList from "../../../components/CreateNewList/CreateNewList";
-import styles from "./TasksName.module.css";
+import styles from "./TasksName.module.scss";
 
 const TasksName = ({ ...props }) => {
   const { isOpen, openModal, closeModal } = useModal();

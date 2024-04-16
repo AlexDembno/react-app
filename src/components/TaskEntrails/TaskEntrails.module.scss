@@ -1,16 +1,16 @@
 .box {
   width: 250px;
-  /* border: 1px solid #007fff; */
+  // border: 1px solid #007fff;
   padding: 10px;
   margin-top: 10px;
 }
 
 .taskWrapper {
   margin-top: 10px;
-}
 
-.taskWrapper:not(:last-child) {
-  margin-bottom: 10px;
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
 }
 
 .list {

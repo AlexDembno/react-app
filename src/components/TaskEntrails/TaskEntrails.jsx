@@ -2,11 +2,11 @@ import TasksName from "../../shared/components/TasksName/TasksName";
 import ButtonUsage from "../../shared/components/Button/Button";
 import Add from "@mui/icons-material/Add";
 import Task from "../Task/Task";
-import styles from "./TaskEntrails.module.css";
 import { useSelector } from "react-redux";
 import Modal from "../../shared/components/Modal/Modal";
 import CreateNewTask from "../CreateNewTask/CreateNewTask";
 import useModal from "../../shared/hooks/useModal";
+import styles from "./TaskEntrails.module.scss";
 
 const TaskEntrails = ({ taskStatus, listId, ListName }) => {
   const { isOpen, openModal, closeModal } = useModal();

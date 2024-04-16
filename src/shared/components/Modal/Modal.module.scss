@@ -1,6 +1,6 @@
 .backdrop {
   position: fixed;
-  padding: 0 20;
+  padding: 0 20px;
   top: 0;
   left: 0;
   width: 100vw;
@@ -9,6 +9,7 @@
   backdrop-filter: blur(2px);
   z-index: 1200;
 }
+
 .modal::-webkit-scrollbar {
   display: none;
 }
@@ -25,11 +26,12 @@
   border: 1px solid #007bff;
   background: var(--White, #fff);
   overflow-x: auto;
-
   box-shadow: var(--box-shadow);
+
   @media screen and (min-width: 768px) {
     width: 480px;
   }
+
   @media screen and (min-width: 1280px) {
     width: 606px;
   }
@@ -53,7 +55,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   width: 30px;
   height: 30px;
   border-radius: 50%;

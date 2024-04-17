@@ -101,7 +101,7 @@ export default function BasicMenu({ name, taskId, handleAddTaskList }) {
         <Modal closeModal={handlCloseModal}>
           <CreateNewTask
             closeModal={handlCloseModal}
-            name={"Edit Task"}
+            actionName={"Edit Task"}
             taskId={taskId}
             ListName={taskListNameData}
           />

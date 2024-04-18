@@ -1,25 +1,30 @@
 .wrapperPage {
-  background-image: url("../../shared/images/Designer\ \(4\).png");
-  background-size: 60% 100%;
-  // background-size: cover;
+  background-image: url("../../shared/images/Designer\ \(1\).png");
+  background-size: cover;
   background-color: #f8f6f3;
   background-position: center;
   background-repeat: no-repeat;
   min-height: 100vh;
   margin: 0;
+  @media screen and (min-width: 1024px) {
+    background-size: 50% 100%;
+  }
+  @media screen and (min-width: 1440px) {
+    background-size: 70% 100%;
+  }
 }
 
 .link {
-  padding: 9px;
+  padding: 5px;
   font-size: 30px;
   font-weight: 600;
   text-decoration: none;
   color: black;
-  border: 5px solid rgb(210, 211, 154);
+  border: 5px solid rgb(197, 161, 3);
   background-color: #fff;
   border-radius: 10%;
   position: absolute;
-  top: 20%;
-  left: 73%;
+  top: 85%;
+  left: 50%;
   transform: translate(-50%);
 }

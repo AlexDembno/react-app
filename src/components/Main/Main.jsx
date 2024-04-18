@@ -26,7 +26,7 @@ const Main = () => {
   ));
 
   return (
-    <main className={styles.wrapper}>
+    <main className={styles.main}>
       <ul className={styles.wrapper}>{list}</ul>
     </main>
   );

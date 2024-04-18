@@ -6,7 +6,9 @@ import styles from "./TaskPage.module.scss";
 const TaskPage = () => {
   return (
     <div className={styles.wrapper}>
-      <Link to="/">Go Home</Link>
+      <Link to="/" className={styles.link}>
+        Go Home
+      </Link>
       <Header />
       <Main />
     </div>

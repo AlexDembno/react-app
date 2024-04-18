@@ -107,7 +107,7 @@ const StyledButton = styled("button", { shouldForwardProp: () => true })(
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
-  min-width: 130px;
+  min-width: 230px;
   padding: 8px 12px;
   border-radius: 8px;
   text-align: left;w

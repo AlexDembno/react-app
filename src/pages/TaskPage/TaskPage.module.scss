@@ -1,5 +1,7 @@
 .wrapper {
   // min-width: 320px;
+  display: flex;
+  flex-direction: column;
   padding: 10px;
   // background-image: url("../../shared/images/blank-1868502_1280.jpg");
   // background-size: 60% 100%;
@@ -7,10 +9,16 @@
   // background-position: center;
   // min-height: 100vh;
   // // margin: 0;
+
   @media screen and (min-width: 768px) {
     padding: 50px;
     // width: 480px;
   }
+}
+
+.link {
+  text-decoration: none;
+  color: black;
 }
 
 // @media screen and (min-width: 768px) {

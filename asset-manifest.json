@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/AlexDembno/React-App/static/css/main.c2cd1a87.css",
-    "main.js": "/AlexDembno/React-App/static/js/main.a63b4268.js",
-    "static/media/Designer (1).png": "/AlexDembno/React-App/static/media/Designer (1).252a50fd7c0493f09ba3.png",
-    "index.html": "/AlexDembno/React-App/index.html",
-    "main.c2cd1a87.css.map": "/AlexDembno/React-App/static/css/main.c2cd1a87.css.map",
-    "main.a63b4268.js.map": "/AlexDembno/React-App/static/js/main.a63b4268.js.map"
+    "main.css": "/React-App/static/css/main.ab73c76f.css",
+    "main.js": "/React-App/static/js/main.a63b4268.js",
+    "static/media/Designer (1).png": "/React-App/static/media/Designer (1).252a50fd7c0493f09ba3.png",
+    "index.html": "/React-App/index.html",
+    "main.ab73c76f.css.map": "/React-App/static/css/main.ab73c76f.css.map",
+    "main.a63b4268.js.map": "/React-App/static/js/main.a63b4268.js.map"
   },
   "entrypoints": [
-    "static/css/main.c2cd1a87.css",
+    "static/css/main.ab73c76f.css",
     "static/js/main.a63b4268.js"
   ]
 }

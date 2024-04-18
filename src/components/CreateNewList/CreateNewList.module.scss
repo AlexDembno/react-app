@@ -8,7 +8,7 @@
 }
 
 .input {
-  width: 320px;
+  width: 280px;
   font-family: "IBM Plex Sans", sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
@@ -24,6 +24,9 @@
   &:hover,
   &:focus {
     border-color: #007bff;
+  }
+  @media screen and (min-width: 768px) {
+    width: 320px;
   }
 }
 

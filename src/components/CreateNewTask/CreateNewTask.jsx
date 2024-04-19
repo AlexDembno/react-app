@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useId } from "react";
 import { Formik, Form, Field } from "formik";
 import { addTask, editTask } from "../../redux/tasks/tasksSlice";
 import { useDispatch } from "react-redux";
@@ -11,6 +11,8 @@ import styles from "./CreateNewTask.module.scss";
 const CreateNewTask = ({ actionName, closeModal, ListName, taskId }) => {
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState("");
+  const nameFieldId = useId();
+  const msgFieldId = useId();
 
   const validate = (value) => {
     let errorMessage;
@@ -24,7 +26,7 @@ const CreateNewTask = ({ actionName, closeModal, ListName, taskId }) => {
     if (!date) {
       return "";
     }
-    return format(date, "yyyy-MM-dd");
+    return format(date, "dd-MM-yyyy");
   };
 
   return (
@@ -56,31 +58,30 @@ const CreateNewTask = ({ actionName, closeModal, ListName, taskId }) => {
         >
           {({ errors, touched, isValidating }) => (
             <Form className={styles.wrapperForm}>
-              <label>
-                Task name
-                <Field
-                  className={styles.input}
-                  name="name"
-                  validate={
-                    actionName === "Create New Task" ? validate : undefined
-                  }
-                  maxLength={20}
-                  placeholder={errors && errors.name}
-                />
-              </label>
-
-              <label>
-                Task description
-                <Field
-                  className={styles.input}
-                  name="description"
-                  validate={
-                    actionName === "Create New Task" ? validate : undefined
-                  }
-                  maxLength={50}
-                  placeholder={errors && errors.name}
-                />
-              </label>
+              <label htmlFor={nameFieldId}>Task name</label>
+              <Field
+                className={styles.input}
+                name="name"
+                validate={
+                  actionName === "Create New Task" ? validate : undefined
+                }
+                maxLength={20}
+                placeholder={errors && errors.name}
+                id={nameFieldId}
+              />
+              <label htmlFor={msgFieldId}>Task description</label>
+              <Field
+                className={styles.input}
+                as="textarea"
+                name="description"
+                id={msgFieldId}
+                rows="4"
+                validate={
+                  actionName === "Create New Task" ? validate : undefined
+                }
+                maxLength={150}
+                placeholder={errors && errors.name}
+              />
 
               <div className={styles.radio} id="my-radio-group">
                 Priority

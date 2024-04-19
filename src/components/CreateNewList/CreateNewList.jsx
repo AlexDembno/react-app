@@ -1,3 +1,4 @@
+import React, { useId } from "react";
 import { useDispatch } from "react-redux";
 import { Formik, Form, Field } from "formik";
 import { addListTask } from "../../redux/taskList/taskListSlice";
@@ -5,6 +6,7 @@ import styles from "./CreateNewList.module.scss";
 
 const CreateNewList = ({ closeModal }) => {
   const dispatch = useDispatch();
+  const nameFieldId = useId();
   const validate = (value) => {
     let errorMessage;
     if (!value) {
@@ -32,18 +34,14 @@ const CreateNewList = ({ closeModal }) => {
         >
           {({ errors, touched, isValidating }) => (
             <Form className={styles.wrapperForm}>
-              <label>
-                Name
-                <Field
-                  className={styles.input}
-                  name="name"
-                  validate={validate}
-                  maxLength={20}
-                />
-                {errors.tasks && errors.list.name && (
-                  <div className={styles.error}>{errors.list.name}</div>
-                )}
-              </label>
+              <label htmlFor={nameFieldId}>Name</label>
+              <Field
+                className={styles.input}
+                name="name"
+                validate={validate}
+                maxLength={20}
+                placeholder={errors && errors.name}
+              />
 
               <button className={styles.button} type="submit">
                 Create

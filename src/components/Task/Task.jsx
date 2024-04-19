@@ -10,18 +10,21 @@ const Task = ({ tasks, taskId }) => {
         <h2 className={styles.title}>{tasks?.name}</h2>
         <BasicMenu name={"Add new card"} taskId={taskId} />
       </div>
-      <p className={styles.text}>{tasks?.description}</p>
+      <div className={styles.textContainer}>
+        <p className={styles.text}>{tasks?.description}</p>
+      </div>
       {tasks?.startDate && (
         <div className={styles.wrapperDate}>
           <CalendarMonth />
           <p className={styles.textDate}>{tasks?.startDate}</p>
+          {tasks?.priority && (
+            <div className={styles.status}>
+              <p className={styles.medium}>{tasks.priority}</p>
+            </div>
+          )}
         </div>
       )}
-      {tasks?.priority && (
-        <div className={styles.status}>
-          <span className={styles.medium}>{tasks.priority}</span>
-        </div>
-      )}
+
       <SelectMove
         tasks={tasks}
         taskId={taskId}

@@ -1,16 +1,20 @@
 .wrapperPage {
-  background-image: url("../../shared/images/Designer\ \(1\).png");
+  background-image: url("../../shared/images/Designer_upscayl_4x_realesrgan-x4plus.png");
   background-size: cover;
   background-color: #f8f6f3;
   background-position: 50% 50%;
   background-repeat: no-repeat;
   min-height: 100vh;
   margin: 0;
+  @media screen and (min-width: 768px) {
+    background-size: cover;
+  }
   @media screen and (min-width: 1024px) {
-    background-size: 50% 100%;
+    background-size: contain;
   }
   @media screen and (min-width: 1440px) {
-    background-size: 70% 100%;
+    // background-size: 70% 100%;
+    background-size: contain;
   }
 }
 
@@ -20,7 +24,7 @@
   font-weight: 600;
   text-decoration: none;
   color: black;
-  border: 5px solid rgb(197, 161, 3);
+  border: 5px solid rgb(121, 161, 199);
   background-color: #fff;
   border-radius: 10%;
   position: absolute;

@@ -8,24 +8,23 @@
 }
 
 .wrapper {
-  // display: flex;
-  // gap: 10px;
-  // flex-direction: column;
-  // flex-wrap: wrap;
-  /* align-items: center; */
-  // justify-content: space-between;
-  // align-content: flex-start;
   @media screen and (min-width: 768px) {
     display: flex;
     gap: 10px;
-    // flex-direction: column;/
     flex-wrap: wrap;
-    // align-items: center;
     align-content: flex-start;
     justify-content: space-evenly;
   }
 }
 
-// .list {
-//   flex-basis: calc((100% - 20px) / 3);
-// }
+.list {
+  margin-bottom: 10px;
+  // background-color: rgba(14, 79, 109, 0.5); /* Прозрачный белый цвет */
+  // padding: 10px;
+  background-color: #f3f4f7; /* Обычный белый цвет фона */
+  border-radius: 10px;
+  border: 1px solid rgb(59, 82, 214);
+  @media screen and (min-width: 768px) {
+    margin-bottom: 0;
+  }
+}

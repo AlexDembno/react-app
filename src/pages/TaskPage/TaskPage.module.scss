@@ -1,18 +1,23 @@
 .wrapper {
-  // min-width: 320px;
+  // width: 100%;
   display: flex;
   flex-direction: column;
   padding: 10px;
-  // background-image: url("../../shared/images/blank-1868502_1280.jpg");
-  // background-size: 60% 100%;
-  // background-repeat: no-repeat;
-  // background-position: center;
+  background-image: url("../../shared/images/Designer_upscayl_4x_realesrgan-x4plus.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  flex-grow: 1;
   // min-height: 100vh;
-  // // margin: 0;
+  // margin: 0;
 
   @media screen and (min-width: 768px) {
     padding: 50px;
-    // width: 480px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100vh;
+    flex-grow: 1;
   }
 }
 

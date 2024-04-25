@@ -1,4 +1,9 @@
 .wrapper {
+  // background-color: rgba(242, 244, 245, 0.5); /* Прозрачный белый цвет */
+  // background-color: #f3f4f7; /* Обычный белый цвет фона */
+
+  margin-bottom: 5px;
+
   padding: 10px;
   &:last-of-type {
     margin-left: auto;

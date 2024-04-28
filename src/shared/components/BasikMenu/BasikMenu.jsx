@@ -11,8 +11,8 @@ import { deleteTask } from "../../../redux/tasks/tasksSlice";
 import { TaskListContext } from "../../../components/Main/Main";
 import { deleteListTask } from "../../../redux/taskList/taskListSlice";
 import useModal from "../../hooks/useModal";
-import Modal from "../Modal/Modal";
-import CreateNewTask from "../../../components/CreateNewTask/CreateNewTask";
+import Modal from "../Modal";
+import CreateNewTask from "../../../components/CreateNewTask";
 
 export default function BasicMenu({ name, taskId, handleAddTaskList }) {
   const { isOpen, openModal, closeModal } = useModal();

@@ -1,10 +1,10 @@
-import TasksName from "../../shared/components/TasksName/TasksName";
-import ButtonUsage from "../../shared/components/Button/Button";
+import TasksName from "../../shared/components/TasksName";
+import ButtonUsage from "../../shared/components/Button";
 import Add from "@mui/icons-material/Add";
-import Task from "../Task/Task";
+import Task from "../Task";
 import { useSelector } from "react-redux";
-import Modal from "../../shared/components/Modal/Modal";
-import CreateNewTask from "../CreateNewTask/CreateNewTask";
+import Modal from "../../shared/components/Modal";
+import CreateNewTask from "../CreateNewTask";
 import useModal from "../../shared/hooks/useModal";
 import styles from "./TaskEntrails.module.scss";
 

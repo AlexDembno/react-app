@@ -1,6 +1,6 @@
-import BasicMenu from "../BasikMenu/BasikMenu";
+import BasicMenu from "../BasikMenu";
 import useModal from "../../hooks/useModal";
-import Modal from "../Modal/Modal";
+import Modal from "../Modal";
 import CreateNewList from "../../../components/CreateNewList/CreateNewList";
 import styles from "./TasksName.module.scss";
 

@@ -1,5 +1,5 @@
-import BasicMenu from "../../shared/components/BasikMenu/BasikMenu";
-import SelectMove from "../../shared/components/Select/Select";
+import BasicMenu from "../../shared/components/BasikMenu";
+import SelectMove from "../../shared/components/Select";
 import CalendarMonth from "@mui/icons-material/CalendarMonthOutlined";
 import styles from "./Task.module.scss";
 

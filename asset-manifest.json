@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/React-App/static/css/main.bb5099c4.css",
-    "main.js": "/React-App/static/js/main.7ae43f88.js",
+    "main.css": "/React-App/static/css/main.74a6457a.css",
+    "main.js": "/React-App/static/js/main.1be9a542.js",
     "static/media/Designer_upscayl_4x_realesrgan-x4plus.png": "/React-App/static/media/Designer_upscayl_4x_realesrgan-x4plus.3c4516686a018375211f.png",
     "index.html": "/React-App/index.html",
-    "main.bb5099c4.css.map": "/React-App/static/css/main.bb5099c4.css.map",
-    "main.7ae43f88.js.map": "/React-App/static/js/main.7ae43f88.js.map"
+    "main.74a6457a.css.map": "/React-App/static/css/main.74a6457a.css.map",
+    "main.1be9a542.js.map": "/React-App/static/js/main.1be9a542.js.map"
   },
   "entrypoints": [
-    "static/css/main.bb5099c4.css",
-    "static/js/main.7ae43f88.js"
+    "static/css/main.74a6457a.css",
+    "static/js/main.1be9a542.js"
   ]
 }

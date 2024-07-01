@@ -18,7 +18,7 @@
   }
 }
 
-.link {
+.tasks {
   padding: 5px;
   font-size: 30px;
   font-weight: 600;
@@ -28,7 +28,22 @@
   background-color: #fff;
   border-radius: 10%;
   position: absolute;
-  top: 85%;
-  left: 50%;
+  top: 5%;
+  left: 85%;
+  transform: translate(-50%);
+}
+
+.exercise {
+  padding: 5px;
+  font-size: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  color: black;
+  border: 5px solid rgb(121, 161, 199);
+  background-color: #fff;
+  border-radius: 10%;
+  position: absolute;
+  top: 5%;
+  left: 15%;
   transform: translate(-50%);
 }

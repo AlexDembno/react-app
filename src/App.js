@@ -1,16 +1,16 @@
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import TaskPage from "./pages/TaskPage";
+import KidsPage from "./pages/KidsPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import ExercisePage from "./pages/ExercisePage";
+import ParentsPage from "./pages/ParentsPage";
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/tasks" element={<TaskPage />} />
-        <Route path="/exercise" element={<ExercisePage />} />
+        <Route path="/kids" element={<KidsPage />} />
+        <Route path="/parents" element={<ParentsPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>

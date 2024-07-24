@@ -1,53 +1,83 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { fetchAlltasks } from "./tasksOperations";
 
-const tasksInitialState = [];
+const initialState = {
+  items: [],
+  loading: false,
+  error: null,
+};
 
 const tasksSlice = createSlice({
   name: "tasks",
+  initialState,
+  // reducers: {
+  //   addTask: {
+  //     reducer({ items }, action) {
+  //       items.push(action.payload);
+  //     },
+  //     prepare(tasks) {
+  //       return {
+  //         payload: {
+  //           ...tasks,
+  //           id: nanoid(),
+  //         },
+  //       };
+  //     },
+  //   },
 
-  initialState: tasksInitialState,
-
-  reducers: {
-    addTask: {
-      reducer(state, action) {
-        state.push(action.payload);
-      },
-      prepare(tasks) {
-        return {
-          payload: {
-            ...tasks,
-            id: nanoid(),
-          },
-        };
-      },
-    },
-
-    deleteTask(state, action) {
-      return state.filter((task) => task.id !== action.payload);
-    },
-    changeStatus(state, action) {
-      const index = state.findIndex((task) => task.id === action.payload.id);
-      const result = state.find((task) => task.id === action.payload.id);
-      const updatedTask = {
-        ...result,
-        status: action.payload.name,
-      };
-      return [...state.slice(0, index), updatedTask, ...state.slice(index + 1)];
-    },
-    editTask(state, action) {
-      const altTask = state.find((task) => task.id === action.payload.taskId);
-      const newTask = {
-        ...altTask,
-        name: action.payload?.name || altTask.name,
-        description: action.payload?.description || altTask.description,
-        priority: action.payload?.priority || altTask.priority,
-        startDate: action.payload?.startDate || altTask.startDate,
-      };
-      const index = state.findIndex(
-        (task) => task.id === action.payload.taskId
-      );
-      return [...state.slice(0, index), newTask, ...state.slice(index + 1)];
-    },
+  //   deleteTask({ items }, action) {
+  //     return items.filter((task) => task.id !== action.payload);
+  //   },
+  //   changeStatus({ items }, action) {
+  //     const index = items.findIndex((task) => task.id === action.payload.id);
+  //     const result = items.find((task) => task.id === action.payload.id);
+  //     const updatedTask = {
+  //       ...result,
+  //       status: action.payload.name,
+  //     };
+  //     return [...items.slice(0, index), updatedTask, ...items.slice(index + 1)];
+  //   },
+  //   // editTask({ items }, action) {
+  //   //   const altTask = items.find((task) => task.id === action.payload.taskId);
+  //   //   const newTask = {
+  //   //     ...altTask,
+  //   //     name: action.payload?.name || altTask.name,
+  //   //     description: action.payload?.description || altTask.description,
+  //   //     priority: action.payload?.priority || altTask.priority,
+  //   //     startDate: action.payload?.startDate || altTask.startDate,
+  //   //   };
+  //   //   const index = items.findIndex(
+  //   //     (task) => task.id === action.payload.taskId
+  //   //   );
+  //   //   return [...items.slice(0, index), newTask, ...items.slice(index + 1)];
+  //   // },
+  //   editTask(state, action) {
+  //     const task = state.items.find(
+  //       (task) => task.id === action.payload.taskId
+  //     );
+  //     if (task) {
+  //       task.name = action.payload?.name || task.name;
+  //       task.description = action.payload?.description || task.description;
+  //       task.priority = action.payload?.priority || task.priority;
+  //       task.startDate = action.payload?.startDate || task.startDate;
+  //     }
+  //   },
+  // },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchAlltasks.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchAlltasks.fulfilled, (state, action) => {
+        console.log("action.payload", action.payload);
+        state.items = action.payload;
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(fetchAlltasks.rejected, (state, action) => {
+        // state.loading = false;
+        // state.error = action.payload;
+      });
   },
 });
 

@@ -10,7 +10,8 @@ import styles from "./TaskEntrails.module.scss";
 
 const TaskEntrails = ({ taskStatus, listId, ListName }) => {
   const { isOpen, openModal, closeModal } = useModal();
-  const tasks = useSelector((state) => state.tasks);
+  const tasks = useSelector((state) => state.tasks.items);
+  console.log("tasksssssss", tasks);
 
   const handleAddTask = () => {
     openModal();

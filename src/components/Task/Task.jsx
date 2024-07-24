@@ -4,14 +4,15 @@ import CalendarMonth from "@mui/icons-material/CalendarMonthOutlined";
 import styles from "./Task.module.scss";
 
 const Task = ({ tasks, taskId }) => {
+  console.log("tasksssss", tasks);
   return (
     <div className={styles.wrapper}>
       <div className={styles.wrapperName}>
-        <h2 className={styles.title}>{tasks?.name}</h2>
+        <h2 className={styles.title}>{tasks?.task_name}</h2>
         <BasicMenu name={"Add new card"} taskId={taskId} />
       </div>
       <div className={styles.textContainer}>
-        <p className={styles.text}>{tasks?.description}</p>
+        <p className={styles.text}>{tasks?.task_description}</p>
       </div>
       {tasks?.startDate && (
         <div className={styles.wrapperDate}>

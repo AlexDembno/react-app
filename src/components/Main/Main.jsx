@@ -15,12 +15,12 @@ const TaskListProvider = ({ children, taskListData, taskListNameData }) => {
 };
 
 const Main = () => {
-  const tasksList = useSelector((state) => state.tasksList);
+  const tasksList = useSelector((state) => state.tasksList.items);
 
-  const list = tasksList.map(({ id, name }) => (
+  const list = tasksList.map(({ id, task_list_name }) => (
     <li className={styles.list} key={id}>
-      <TaskListProvider taskListData={id} taskListNameData={name}>
-        <TaskEntrails taskStatus={name} ListName={name} />
+      <TaskListProvider taskListData={id} taskListNameData={task_list_name}>
+        <TaskEntrails taskStatus={task_list_name} ListName={task_list_name} />
       </TaskListProvider>
     </li>
   ));

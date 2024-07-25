@@ -9,7 +9,7 @@ import UnfoldMoreRoundedIcon from "@mui/icons-material/UnfoldMoreRounded";
 
 export default function SelectMove({ taskId }) {
   const dispatch = useDispatch();
-  const tasksList = useSelector((state) => state.tasksList);
+  const tasksList = useSelector((state) => state.tasksList.items);
 
   const changeList = (id, name) => {
     dispatch(changeStatus({ id, name }));

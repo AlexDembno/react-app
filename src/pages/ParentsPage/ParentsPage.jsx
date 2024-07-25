@@ -1,6 +1,6 @@
 import React, { createContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllTasks } from "../../redux/tasks/tasksSelectors";
+// import { getAllTasks } from "../../redux/tasks/tasksSelectors";
 import { todoList } from "./task";
 import Exercise from "../../components/Exercise/Exercise";
 import TaskEntrails from "../../components/TaskEntrails";
@@ -8,6 +8,9 @@ import { Link } from "react-router-dom";
 import Header from "../../components/Header";
 
 import { fetchAlltasks } from "../../redux/tasks/tasksOperations";
+import { fetchAlltaskList } from "../../redux/taskList/taskListOperations";
+import { getAllTaskLists } from "../../shared/services/api/tasksList";
+import { getAllTasks } from "../../shared/services/api/tasks";
 
 import styles from "./ParentsPage.module.scss";
 
@@ -17,8 +20,8 @@ export const TaskListContext = createContext();
 
 const ParentsPage = () => {
   const dispatch = useDispatch();
-  const tasks = useSelector(getAllTasks);
-  console.log("tasks", tasks);
+  // const tasks = useSelector(getAllTasks);
+  // console.log("tasks", tasks);
 
   // const list = todoList.map(({ id, name }) => (
   //   <li className={styles.list} key={id}>
@@ -28,7 +31,10 @@ const ParentsPage = () => {
   // ));
 
   const handleFetchAlltasks = async () => {
-    console.log("getAllTasksParent");
+    console.log("getAllTasksList");
+    console.log("getAllTaskLists", getAllTaskLists());
+    console.log("getAllTasks", getAllTasks());
+    dispatch(fetchAlltaskList());
     dispatch(fetchAlltasks());
   };
 

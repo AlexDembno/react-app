@@ -6,6 +6,7 @@ export const fetchAlltasks = createAsyncThunk(
   "tasks/getAll",
   async (_, thunkAPI) => {
     try {
+      console.log("fetchAlltasks");
       const response = await getAllTasks();
       console.log("datafetch", response);
       return response;

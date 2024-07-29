@@ -1,5 +1,5 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
-import { fetchAlltaskList } from "./taskListOperations";
+import { fetchAlltaskList, fetchAddtaskList } from "./taskListOperations";
 
 const initialState = {
   items: [],
@@ -12,20 +12,20 @@ const taskListSlice = createSlice({
   initialState,
 
   reducers: {
-    addListTask: {
-      reducer(state, action) {
-        console.log("action.payload", action.payload);
-        state.items.push(action.payload);
-      },
-      prepare(tasks) {
-        return {
-          payload: {
-            ...tasks,
-            id: nanoid(),
-          },
-        };
-      },
-    },
+    // addListTask: {
+    //   reducer(state, action) {
+    //     console.log("action.payload", action.payload);
+    //     state.items.push(action.payload);
+    //   },
+    //   prepare(tasks) {
+    //     return {
+    //       payload: {
+    //         ...tasks,
+    //         id: nanoid(),
+    //       },
+    //     };
+    //   },
+    // },
 
     deleteListTask(state, action) {
       const index = state.items.findIndex(
@@ -41,12 +41,24 @@ const taskListSlice = createSlice({
         state.loading = true;
       })
       .addCase(fetchAlltaskList.fulfilled, (state, action) => {
-        console.log("action.payload", action.payload);
         state.items = action.payload;
         state.loading = false;
         state.error = null;
       })
       .addCase(fetchAlltaskList.rejected, (state, action) => {
+        // state.loading = false;
+        // state.error = action.payload;
+      })
+      .addCase(fetchAddtaskList.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchAddtaskList.fulfilled, (state, action) => {
+        console.log("action.payload", action.payload);
+        state.items = action.payload;
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(fetchAddtaskList.rejected, (state, action) => {
         // state.loading = false;
         // state.error = action.payload;
       });

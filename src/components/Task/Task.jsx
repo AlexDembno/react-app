@@ -4,7 +4,6 @@ import CalendarMonth from "@mui/icons-material/CalendarMonthOutlined";
 import styles from "./Task.module.scss";
 
 const Task = ({ tasks, taskId }) => {
-  console.log("tasksssss", tasks);
   return (
     <div className={styles.wrapper}>
       <div className={styles.wrapperName}>

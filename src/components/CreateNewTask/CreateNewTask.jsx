@@ -1,6 +1,7 @@
 import React, { useState, useId } from "react";
 import { Formik, Form, Field } from "formik";
 import { addTask, editTask } from "../../redux/tasks/tasksSlice";
+import { fetchAddTasks } from "../../redux/tasks/tasksOperations";
 import { useDispatch } from "react-redux";
 import DatePicker from "react-datepicker";
 import { format } from "date-fns";
@@ -35,9 +36,9 @@ const CreateNewTask = ({ actionName, closeModal, ListName, taskId }) => {
       <div>
         <Formik
           initialValues={{
-            name: "",
+            task_name: "",
             status: ListName,
-            description: "",
+            task_description: "",
             priority: "",
             startDate: startDate || "",
           }}
@@ -45,7 +46,10 @@ const CreateNewTask = ({ actionName, closeModal, ListName, taskId }) => {
             const formattedStartDate = formatDate(startDate);
             dispatch(
               actionName === "Create New Task"
-                ? addTask({ ...values, startDate: formattedStartDate || "" })
+                ? fetchAddTasks({
+                    ...values,
+                    startDate: formattedStartDate || "",
+                  })
                 : editTask({
                     taskId,
                     ...values,
@@ -61,7 +65,7 @@ const CreateNewTask = ({ actionName, closeModal, ListName, taskId }) => {
               <label htmlFor={nameFieldId}>Task name</label>
               <Field
                 className={styles.input}
-                name="name"
+                name="task_name"
                 validate={
                   actionName === "Create New Task" ? validate : undefined
                 }
@@ -73,7 +77,7 @@ const CreateNewTask = ({ actionName, closeModal, ListName, taskId }) => {
               <Field
                 className={styles.input}
                 as="textarea"
-                name="description"
+                name="task_description"
                 id={msgFieldId}
                 rows="4"
                 validate={

@@ -1,6 +1,8 @@
-import React, { createContext } from "react";
-import { useSelector } from "react-redux";
+import React, { createContext, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import TaskEntrails from "../TaskEntrails";
+import { fetchAlltaskList } from "../../redux/taskList/taskListOperations";
+import { fetchAlltasks } from "../../redux/tasks/tasksOperations";
 
 import styles from "./Main.module.scss";
 
@@ -15,7 +17,13 @@ const TaskListProvider = ({ children, taskListData, taskListNameData }) => {
 };
 
 const Main = () => {
+  const dispatch = useDispatch();
   const tasksList = useSelector((state) => state.tasksList.items);
+
+  // useEffect(() => {
+  //   dispatch(fetchAlltaskList());
+  //   dispatch(fetchAlltasks());
+  // }, [dispatch]);
 
   const list = tasksList.map(({ id, task_list_name }) => (
     <li className={styles.list} key={id}>

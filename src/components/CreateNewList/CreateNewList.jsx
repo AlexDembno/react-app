@@ -2,6 +2,8 @@ import React, { useId } from "react";
 import { useDispatch } from "react-redux";
 import { Formik, Form, Field } from "formik";
 import { addListTask } from "../../redux/taskList/taskListSlice";
+import { addTaskList } from "../../shared/services/api/tasksList";
+import { fetchAddtaskList } from "../../redux/taskList/taskListOperations";
 import styles from "./CreateNewList.module.scss";
 
 const CreateNewList = ({ closeModal }) => {
@@ -20,11 +22,11 @@ const CreateNewList = ({ closeModal }) => {
       <div>
         <Formik
           initialValues={{
-            name: "",
+            task_list_name: "",
           }}
           onSubmit={(values, formikBag) => {
             dispatch(
-              addListTask({
+              fetchAddtaskList({
                 ...values,
               })
             );
@@ -37,7 +39,7 @@ const CreateNewList = ({ closeModal }) => {
               <label htmlFor={nameFieldId}>Name</label>
               <Field
                 className={styles.input}
-                name="name"
+                name="task_list_name"
                 validate={validate}
                 maxLength={20}
                 placeholder={errors && errors.name}

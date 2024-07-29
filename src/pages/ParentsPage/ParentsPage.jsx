@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React, { createContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { getAllTasks } from "../../redux/tasks/tasksSelectors";
 import { todoList } from "./task";
@@ -9,8 +9,6 @@ import Header from "../../components/Header";
 
 import { fetchAlltasks } from "../../redux/tasks/tasksOperations";
 import { fetchAlltaskList } from "../../redux/taskList/taskListOperations";
-import { getAllTaskLists } from "../../shared/services/api/tasksList";
-import { getAllTasks } from "../../shared/services/api/tasks";
 
 import styles from "./ParentsPage.module.scss";
 
@@ -30,20 +28,23 @@ const ParentsPage = () => {
   //   </li>
   // ));
 
-  const handleFetchAlltasks = async () => {
-    console.log("getAllTasksList");
-    console.log("getAllTaskLists", getAllTaskLists());
-    console.log("getAllTasks", getAllTasks());
-    dispatch(fetchAlltaskList());
-    dispatch(fetchAlltasks());
-  };
+  // const handleFetchAlltasks = async () => {
+  //   console.log("getAllTasksList");
+  //   console.log("getAllTaskLists", getAllTaskLists());
+  //   console.log("getAllTasks", getAllTasks());
+  // };
+
+  // useEffect(() => {
+  //   dispatch(fetchAlltaskList());
+  //   dispatch(fetchAlltasks());
+  // }, [dispatch]);
 
   return (
     <>
       <div className={styles.wrapper}>
-        <button type="button" onClick={handleFetchAlltasks}>
+        {/* <button type="button" onClick={handleFetchAlltasks}>
           fetchAlltasks
-        </button>
+        </button> */}
         <Link to="/" className={styles.link}>
           Go Home
         </Link>

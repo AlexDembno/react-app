@@ -2,6 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   getAllTaskLists,
   addTaskList,
+  deleteTaskList,
 } from "../../shared/services/api/tasksList";
 
 export const fetchAlltaskList = createAsyncThunk(
@@ -21,7 +22,18 @@ export const fetchAddtaskList = createAsyncThunk(
   async (taskList, thunkAPI) => {
     try {
       const response = await addTaskList(taskList);
-      console.log("response", response);
+      return response;
+    } catch ({ response }) {
+      return thunkAPI.rejectWithValue(response.data);
+    }
+  }
+);
+
+export const fetchDeleteTaskList = createAsyncThunk(
+  "tasksList/deleteTaskList",
+  async (id, thunkAPI) => {
+    try {
+      const response = await deleteTaskList(id);
       return response;
     } catch ({ response }) {
       return thunkAPI.rejectWithValue(response.data);

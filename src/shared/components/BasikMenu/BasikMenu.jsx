@@ -7,9 +7,9 @@ import Edit from "@mui/icons-material/Edit";
 import Add from "@mui/icons-material/Add";
 import Delete from "@mui/icons-material/Delete";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { deleteTask } from "../../../redux/tasks/tasksSlice";
+import { fetchDeleteTask } from "../../../redux/tasks/tasksOperations";
 import { TaskListContext } from "../../../components/Main/Main";
-import { deleteListTask } from "../../../redux/taskList/taskListSlice";
+import { fetchDeleteTaskList } from "../../../redux/taskList/taskListOperations";
 import useModal from "../../hooks/useModal";
 import Modal from "../Modal";
 import CreateNewTask from "../../../components/CreateNewTask";
@@ -49,11 +49,11 @@ export default function BasicMenu({ name, taskId, handleAddTaskList }) {
 
   const handleDelete = () => {
     if (taskListData && !taskId) {
-      dispatch(deleteListTask(taskListData));
+      dispatch(fetchDeleteTaskList(taskListData));
       setAnchorEl(null);
     }
     if (taskId && taskListData) {
-      dispatch(deleteTask(taskId));
+      dispatch(fetchDeleteTask(taskId));
       setAnchorEl(null);
     }
   };

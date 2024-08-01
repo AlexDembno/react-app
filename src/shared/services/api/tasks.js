@@ -17,3 +17,21 @@ export const addTask = async (task) => {
     return error.messege;
   }
 };
+
+export const deleteTask = async (id) => {
+  try {
+    await instance.delete(`/tasks/${id}`);
+    return id;
+  } catch (error) {
+    return error.messege;
+  }
+};
+
+export const changeStatusTask = async (newStatus) => {
+  try {
+    const { data } = await instance.patch("/tasks", newStatus);
+    return data;
+  } catch (error) {
+    return error.messege;
+  }
+};

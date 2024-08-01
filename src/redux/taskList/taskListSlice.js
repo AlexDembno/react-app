@@ -1,5 +1,9 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit";
-import { fetchAlltaskList, fetchAddtaskList } from "./taskListOperations";
+import { createSlice } from "@reduxjs/toolkit";
+import {
+  fetchAlltaskList,
+  fetchAddtaskList,
+  fetchDeleteTaskList,
+} from "./taskListOperations";
 
 const initialState = {
   items: [],
@@ -27,12 +31,12 @@ const taskListSlice = createSlice({
     //   },
     // },
 
-    deleteListTask(state, action) {
-      const index = state.items.findIndex(
-        (tasksList) => tasksList.id === action.payload
-      );
-      state.items.splice(index, 1);
-    },
+    // deleteListTask(state, action) {
+    //   const index = state.items.findIndex(
+    //     (tasksList) => tasksList.id === action.payload
+    //   );
+    //   state.items.splice(index, 1);
+    // },
     toggleListCompleted(state, action) {},
   },
   extraReducers: (builder) => {
@@ -53,12 +57,23 @@ const taskListSlice = createSlice({
         state.loading = true;
       })
       .addCase(fetchAddtaskList.fulfilled, (state, action) => {
-        console.log("action.payload", action.payload);
-        state.items = action.payload;
+        state.items = [...state.items, action.payload];
         state.loading = false;
         state.error = null;
       })
       .addCase(fetchAddtaskList.rejected, (state, action) => {
+        // state.loading = false;
+        // state.error = action.payload;
+      })
+      .addCase(fetchDeleteTaskList.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchDeleteTaskList.fulfilled, (state, action) => {
+        state.items = state.items.filter((item) => item.id !== action.payload);
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(fetchDeleteTaskList.rejected, (state, action) => {
         // state.loading = false;
         // state.error = action.payload;
       });

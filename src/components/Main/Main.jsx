@@ -20,10 +20,10 @@ const Main = () => {
   const dispatch = useDispatch();
   const tasksList = useSelector((state) => state.tasksList.items);
 
-  // useEffect(() => {
-  //   dispatch(fetchAlltaskList());
-  //   dispatch(fetchAlltasks());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchAlltaskList());
+    dispatch(fetchAlltasks());
+  }, [dispatch]);
 
   const list = tasksList.map(({ id, task_list_name }) => (
     <li className={styles.list} key={id}>

@@ -5,6 +5,7 @@ import {
   addTask,
   deleteTask,
   changeStatusTask,
+  editTask,
 } from "../../shared/services/api";
 
 export const fetchAlltasks = createAsyncThunk(
@@ -54,3 +55,16 @@ export const fetchChangeStatusTask = createAsyncThunk(
     }
   }
 );
+
+export const fetchEditTask = createAsyncThunk(
+  "tasks/editTask",
+  async (newTask, thunkAPI) => {
+    try {
+      const response = await editTask(newTask);
+      return response;
+    } catch ({ response }) {
+      return thunkAPI.rejectWithValue(response.data);
+    }
+  }
+);
+

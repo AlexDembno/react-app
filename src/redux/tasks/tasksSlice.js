@@ -4,6 +4,7 @@ import {
   fetchAddTasks,
   fetchDeleteTask,
   fetchChangeStatusTask,
+  fetchEditTask,
 } from "./tasksOperations";
 
 const initialState = {
@@ -123,6 +124,24 @@ const tasksSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchChangeStatusTask.rejected, (state, action) => {
+        // state.loading = false;
+        // state.error = action.payload;
+      })
+      .addCase(fetchEditTask.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchEditTask.fulfilled, (state, action) => {
+        
+        const index = state.items.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        if (index !== -1) {
+          state.items[index] = action.payload;
+        }
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(fetchEditTask.rejected, (state, action) => {
         // state.loading = false;
         // state.error = action.payload;
       });

@@ -35,3 +35,12 @@ export const changeStatusTask = async (newStatus) => {
     return error.messege;
   }
 };
+
+export const editTask = async (newTask) => {
+  try {
+    const { data } = await instance.patch("/tasks/edit", newTask);
+    return data;
+  } catch (error) {
+    return error.messege;
+  }
+};

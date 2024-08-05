@@ -1,2 +1,2 @@
-export { getAllTasks, deleteTask, addTask, changeStatusTask } from "./tasks";
+export { getAllTasks, deleteTask, addTask, changeStatusTask, editTask } from "./tasks";
 export { getAllTaskLists } from "./tasksList";

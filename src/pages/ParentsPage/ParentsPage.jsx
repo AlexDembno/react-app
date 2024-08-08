@@ -1,14 +1,6 @@
-import React, { createContext, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-// import { getAllTasks } from "../../redux/tasks/tasksSelectors";
-import { todoList } from "./task";
-import Exercise from "../../components/Exercise/Exercise";
-import TaskEntrails from "../../components/TaskEntrails";
+import { createContext } from "react";
 import { Link } from "react-router-dom";
 import Header from "../../components/Header";
-
-import { fetchAlltasks } from "../../redux/tasks/tasksOperations";
-import { fetchAlltaskList } from "../../redux/taskList/taskListOperations";
 
 import styles from "./ParentsPage.module.scss";
 
@@ -17,7 +9,6 @@ import Main from "../../components/Main";
 export const TaskListContext = createContext();
 
 const ParentsPage = () => {
-  const dispatch = useDispatch();
   // const tasks = useSelector(getAllTasks);
   // console.log("tasks", tasks);
 
@@ -42,13 +33,9 @@ const ParentsPage = () => {
   return (
     <>
       <div className={styles.wrapper}>
-        {/* <button type="button" onClick={handleFetchAlltasks}>
-          fetchAlltasks
-        </button> */}
         <Link to="/" className={styles.link}>
           Go Home
         </Link>
-
         <Header />
         <Main />
       </div>

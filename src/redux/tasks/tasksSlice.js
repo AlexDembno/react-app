@@ -77,14 +77,13 @@ const tasksSlice = createSlice({
         state.loading = true;
       })
       .addCase(fetchAlltasks.fulfilled, (state, action) => {
-        console.log("action.payload fetchAlltasks", action.payload);
         state.items = action.payload;
         state.loading = false;
         state.error = null;
       })
       .addCase(fetchAlltasks.rejected, (state, action) => {
-        // state.loading = false;
-        // state.error = action.payload;
+        state.loading = false;
+        state.error = action.payload;
       })
       .addCase(fetchAddTasks.pending, (state) => {
         state.loading = true;
@@ -95,8 +94,8 @@ const tasksSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchAddTasks.rejected, (state, action) => {
-        // state.loading = false;
-        // state.error = action.payload;
+        state.loading = false;
+        state.error = action.payload;
       })
       .addCase(fetchDeleteTask.pending, (state) => {
         state.loading = true;
@@ -107,8 +106,8 @@ const tasksSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchDeleteTask.rejected, (state, action) => {
-        // state.loading = false;
-        // state.error = action.payload;
+        state.loading = false;
+        state.error = action.payload;
       })
       .addCase(fetchChangeStatusTask.pending, (state) => {
         state.loading = true;
@@ -124,14 +123,13 @@ const tasksSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchChangeStatusTask.rejected, (state, action) => {
-        // state.loading = false;
-        // state.error = action.payload;
+        state.loading = false;
+        state.error = action.payload;
       })
       .addCase(fetchEditTask.pending, (state) => {
         state.loading = true;
       })
       .addCase(fetchEditTask.fulfilled, (state, action) => {
-        
         const index = state.items.findIndex(
           (item) => item.id === action.payload.id
         );
@@ -142,8 +140,8 @@ const tasksSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchEditTask.rejected, (state, action) => {
-        // state.loading = false;
-        // state.error = action.payload;
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });

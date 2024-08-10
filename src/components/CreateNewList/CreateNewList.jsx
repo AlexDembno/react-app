@@ -1,8 +1,6 @@
-import React, { useId } from "react";
+import { useId } from "react";
 import { useDispatch } from "react-redux";
 import { Formik, Form, Field } from "formik";
-import { addListTask } from "../../redux/taskList/taskListSlice";
-import { addTaskList } from "../../shared/services/api/tasksList";
 import { fetchAddtaskList } from "../../redux/taskList/taskListOperations";
 import styles from "./CreateNewList.module.scss";
 

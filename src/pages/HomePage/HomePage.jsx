@@ -10,6 +10,9 @@ const HomePage = () => {
       <Link to="/parents" className={styles.exercise}>
         Parents
       </Link>
+      <Link to="/registration" className={styles.exercise}>
+        Parents
+      </Link>
     </section>
   );
 };

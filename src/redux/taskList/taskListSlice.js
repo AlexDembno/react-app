@@ -50,8 +50,8 @@ const taskListSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchAlltaskList.rejected, (state, action) => {
-        // state.loading = false;
-        // state.error = action.payload;
+        state.loading = false;
+        state.error = action.payload;
       })
       .addCase(fetchAddtaskList.pending, (state) => {
         state.loading = true;
@@ -62,8 +62,8 @@ const taskListSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchAddtaskList.rejected, (state, action) => {
-        // state.loading = false;
-        // state.error = action.payload;
+        state.loading = false;
+        state.error = action.payload;
       })
       .addCase(fetchDeleteTaskList.pending, (state) => {
         state.loading = true;
@@ -74,8 +74,8 @@ const taskListSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchDeleteTaskList.rejected, (state, action) => {
-        // state.loading = false;
-        // state.error = action.payload;
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });

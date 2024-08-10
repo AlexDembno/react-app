@@ -1,6 +1,5 @@
-import React, { useState, useId } from "react";
+import { useState, useId } from "react";
 import { Formik, Form, Field } from "formik";
-import { addTask, editTask } from "../../redux/tasks/tasksSlice";
 import { fetchAddTasks, fetchEditTask } from "../../redux/tasks/tasksOperations";
 import { useDispatch } from "react-redux";
 import DatePicker from "react-datepicker";

@@ -1,15 +1,12 @@
 import { useId } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
-import { fetchRegister } from "../../../redux/auth/authOperations";
 
 import "react-datepicker/dist/react-datepicker.css";
-import styles from "./RegisterForm.module.scss";
+import styles from "./LoginForm.module.scss";
 
-const RegisterForm = () => {
+const LoginForm = () => {
   const dispatch = useDispatch();
-  const firstNameFieldId = useId();
-  const lastNameFieldId = useId();
   const emailFieldId = useId();
   const passwordFieldId = useId();
 
@@ -30,62 +27,28 @@ const RegisterForm = () => {
       errors.password = "Password must be at least 8 characters";
     }
 
-    if (!values.first_name) {
-      errors.first_name = "Required";
-    } else if (values.first_name === "admin") {
-      errors.first_name = "Nice try!";
-    }
-
     return errors;
   };
 
   return (
     <div className={styles.wrapperPage}>
-      <h2 className={styles.text}>Register Form</h2>
+      <h2 className={styles.text}>Login Form</h2>
       <div className={styles.container}>
         <Formik
           initialValues={{
-            first_name: "",
-            last_name: "",
             email: "",
             password: "",
           }}
           validate={validate}
-          onSubmit={(values, formik) => {
-            dispatch(fetchRegister(values));
+          onSubmit={(values, formikBag) => {
+            // dispatch();
             console.log({ values });
 
-            formik.resetForm();
+            formikBag.resetForm();
           }}
         >
           {({ errors, touched, isValidating }) => (
             <Form className={styles.wrapperForm}>
-              <label htmlFor={firstNameFieldId} className={styles.labelForm}>
-                First name
-              </label>
-              <Field
-                className={styles.input}
-                name="first_name"
-                maxLength={20}
-                id={firstNameFieldId}
-                placeholder={
-                  errors.last_name && touched.last_name ? errors.last_name : ""
-                }
-              />
-              <ErrorMessage
-                name="first_name"
-                component="div"
-                className={styles.error}
-              />
-
-              <label htmlFor={lastNameFieldId}>Last name</label>
-              <Field
-                className={styles.input}
-                name="last_name"
-                maxLength={20}
-                id={lastNameFieldId}
-              />
-
               <label htmlFor={emailFieldId}>Email</label>
               <Field
                 className={styles.input}
@@ -123,4 +86,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default LoginForm;

@@ -20,6 +20,8 @@ const Main = () => {
   const dispatch = useDispatch();
   const tasksList = useSelector((state) => state.tasksList.items);
   const isLoading = useSelector((state) => state.tasksList.loading);
+  const isLogin = useSelector((state) => state.auth.isLogin);
+  console.log("isLogin", isLogin);
 
   useEffect(() => {
     dispatch(fetchAlltaskList());

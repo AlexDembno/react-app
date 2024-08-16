@@ -8,7 +8,7 @@ import { tasksListReducer } from "./taskList/taskListSlice";
 const persistConfig = {
   key: "tasks",
   storage,
-  whitelist: ["tasks", "tasksList, auth"],
+  whitelist: ["tasks", "tasksList", "auth"],
 };
 
 const rootReducer = combineReducers({

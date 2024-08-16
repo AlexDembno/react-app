@@ -48,3 +48,33 @@
   left: 15%;
   transform: translate(-50%);
 }
+
+.registration {
+  padding: 5px;
+  font-size: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  color: black;
+  border: 5px solid rgb(121, 161, 199);
+  background-color: #fff;
+  border-radius: 10%;
+  position: absolute;
+  top: 50%;
+  left: 85%;
+  transform: translate(-50%);
+}
+
+.login {
+  padding: 5px;
+  font-size: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  color: black;
+  border: 5px solid rgb(121, 161, 199);
+  background-color: #fff;
+  border-radius: 10%;
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  transform: translate(-50%);
+}

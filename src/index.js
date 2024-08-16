@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import { store, persistor } from "./redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 import { BrowserRouter } from "react-router-dom";
+import AuthLayout from "./components/AuthLayout/AuthLayout";
 import LoaderComponent from "./components/Loader";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -13,9 +14,11 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={<LoaderComponent />} persistor={persistor}>
-        <BrowserRouter basename="/React-App">
-          <App />
-        </BrowserRouter>
+        <AuthLayout>
+          <BrowserRouter basename="/React-App">
+            <App />
+          </BrowserRouter>
+        </AuthLayout>
       </PersistGate>
     </Provider>
   </React.StrictMode>

@@ -1,6 +1,6 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, current } from "@reduxjs/toolkit";
 
-import { register, login } from "../../shared/services/api/auth";
+import { register, login, logout } from "../../shared/services/api/auth";
 
 export const fetchRegister = createAsyncThunk(
   "auth/register",
@@ -19,6 +19,41 @@ export const fetchLogin = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const response = await login(data);
+      return response;
+    } catch ({ response }) {
+      return thunkAPI.rejectWithValue(response.data);
+    }
+  }
+);
+
+export const fetchCurrent = createAsyncThunk(
+  "auth/current",
+  async (_, { rejectWithValue, getState }) => {
+    try {
+      const { auth } = getState();
+      console.log("auth", auth);
+
+      const response = await current(auth.accessToken);
+      console.log("responce", response);
+    } catch ({ response }) {
+      return rejectWithValue(response.data);
+    }
+  },
+  {
+    condition: (_, { getState }) => {
+      const { auth } = getState();
+      if (!auth.accessToken) {
+        return false;
+      }
+    },
+  }
+);
+
+export const fetchLogout = createAsyncThunk(
+  "auth/logout",
+  async (_, thunkAPI) => {
+    try {
+      const response = await logout();
       return response;
     } catch ({ response }) {
       return thunkAPI.rejectWithValue(response.data);

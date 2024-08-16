@@ -6,4 +6,4 @@ export {
   editTask,
 } from "./tasks";
 export { getAllTaskLists } from "./tasksList";
-export { register, login } from "./auth";
+export { register, login, current, logout } from "./auth";

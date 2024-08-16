@@ -1,8 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchRegister, fetchLogin } from "./authOperations";
+import {
+  fetchRegister,
+  fetchLogin,
+  fetchCurrent,
+  fetchLogout,
+} from "./authOperations";
 
 const initialState = {
-  token: "",
+  accessToken: "",
   isLogin: false,
   loading: false,
   error: null,
@@ -19,11 +24,11 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchRegister.fulfilled, (state, action) => {
-        console.log("action", action.payload);
+        console.log("action", action.payload.accessToken);
 
         state.loading = false;
         state.isLogin = true;
-        state.token = action.payload;
+        state.accessToken = action.payload.accessToken;
       })
       .addCase(fetchRegister.rejected, (state, action) => {
         state.loading = false;
@@ -34,11 +39,39 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchLogin.fulfilled, (state, action) => {
+        console.log("action.payload.accessToken", action.payload.accessToken);
+
         state.loading = false;
         state.isLogin = true;
-        state.token = action.payload;
+        state.accessToken = action.payload.accessToken;
       })
       .addCase(fetchLogin.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(fetchCurrent.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchCurrent.fulfilled, (state, action) => {
+        state.loading = false;
+        state.isLogin = true;
+        state.accessToken = action.payload.accessToken;
+      })
+      .addCase(fetchCurrent.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(fetchLogout.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchLogout.fulfilled, (state, action) => {
+        state.loading = false;
+        state.isLogin = false;
+        state.accessToken = "";
+      })
+      .addCase(fetchLogout.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

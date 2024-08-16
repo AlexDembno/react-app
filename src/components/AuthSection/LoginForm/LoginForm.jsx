@@ -1,7 +1,7 @@
 import { useId } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
-
+import { fetchLogin } from "../../../redux/auth/authOperations";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./LoginForm.module.scss";
 
@@ -41,7 +41,7 @@ const LoginForm = () => {
           }}
           validate={validate}
           onSubmit={(values, formikBag) => {
-            // dispatch();
+            dispatch(fetchLogin(values));
             console.log({ values });
 
             formikBag.resetForm();

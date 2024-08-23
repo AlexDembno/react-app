@@ -1,4 +1,5 @@
 import { useId } from "react";
+import { Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
 import { fetchRegister } from "../../../redux/auth/authOperations";
@@ -15,6 +16,9 @@ const RegisterForm = () => {
 
   const validate = (values) => {
     const errors = {};
+    if (!values.status) {
+      errors.status = "Required";
+    }
 
     if (!values.email) {
       errors.email = "Required";
@@ -47,12 +51,18 @@ const RegisterForm = () => {
           initialValues={{
             first_name: "",
             last_name: "",
+            status: "",
             email: "",
             password: "",
           }}
           validate={validate}
           onSubmit={(values, formik) => {
-            dispatch(fetchRegister(values));
+            dispatch(
+              fetchRegister({
+                ...values,
+                status: values.status === "true",
+              })
+            );
             console.log({ values });
 
             formik.resetForm();
@@ -69,7 +79,9 @@ const RegisterForm = () => {
                 maxLength={20}
                 id={firstNameFieldId}
                 placeholder={
-                  errors.last_name && touched.last_name ? errors.last_name : ""
+                  errors.first_name && touched.first_name
+                    ? errors.first_name
+                    : ""
                 }
               />
               <ErrorMessage
@@ -85,6 +97,26 @@ const RegisterForm = () => {
                 maxLength={20}
                 id={lastNameFieldId}
               />
+
+              <div
+                className={styles.radio}
+                role="group"
+                aria-labelledby="my-radio-group"
+              >
+                <label>
+                  <Field type="radio" name="status" value="true" validate />
+                  Parent
+                </label>
+                <label>
+                  <Field type="radio" name="status" value="false" validate />
+                  Child
+                </label>
+                <ErrorMessage
+                  name="status"
+                  component="div"
+                  className={styles.error}
+                />
+              </div>
 
               <label htmlFor={emailFieldId}>Email</label>
               <Field
@@ -115,6 +147,9 @@ const RegisterForm = () => {
               <button className={styles.button} type="submit">
                 Submit
               </button>
+              <Link to="/login" className={styles.registration}>
+                Login Form
+              </Link>
             </Form>
           )}
         </Formik>

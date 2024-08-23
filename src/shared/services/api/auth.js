@@ -34,10 +34,12 @@ export const login = async (data) => {
 };
 
 export const current = async (token) => {
+  console.log("token", token);
   try {
     setToken(token);
-    const data = await instance.get("/auth/current");
+    const { data } = await instance.get("/auth/current");
     console.log("data", data);
+    return data;
   } catch (error) {
     setToken();
     return error.messege;
@@ -49,6 +51,19 @@ export const logout = async () => {
     const data = await instance.get("/auth/logout");
     console.log("data", data);
     setToken();
+  } catch (error) {
+    return error.messege;
+  }
+};
+
+export const addKids = async (data, token) => {
+  try {
+    console.log(instance.defaults.headers.authorization);
+
+    // setToken(token);
+    const { data: result } = await instance.post("/auth/addkids", data);
+    console.log(result);
+    return result;
   } catch (error) {
     return error.messege;
   }

@@ -1,26 +1,18 @@
 import { useId } from "react";
-import { Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
-import { fetchLogin } from "../../../redux/auth/authOperations";
+import { fetchAddKids } from "../../redux/kids/kidsOperations";
 import "react-datepicker/dist/react-datepicker.css";
-import styles from "./LoginForm.module.scss";
+import styles from "./AddKidsForm.module.scss";
 
-const LoginForm = () => {
+const AddKidsForm = () => {
   const dispatch = useDispatch();
-  const emailFieldId = useId();
+  const firstNameFieldId = useId();
+  const lastNameFieldId = useId();
   const passwordFieldId = useId();
 
   const validate = (values) => {
     const errors = {};
-
-    if (!values.email) {
-      errors.email = "Required";
-    } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-    ) {
-      errors.email = "Invalid email address";
-    }
 
     if (!values.password) {
       errors.password = "Required";
@@ -28,39 +20,54 @@ const LoginForm = () => {
       errors.password = "Password must be at least 8 characters";
     }
 
+    if (!values.first_name) {
+      errors.first_name = "Required";
+    } else if (values.first_name === "admin") {
+      errors.first_name = "Nice try!";
+    }
+
     return errors;
   };
 
   return (
     <div className={styles.wrapperPage}>
-      <h2 className={styles.text}>Login Form</h2>
+      <h2 className={styles.text}>Add Kids</h2>
       <div className={styles.container}>
         <Formik
           initialValues={{
-            email: "",
+            first_name: "",
+            last_name: "",
             password: "",
           }}
           validate={validate}
           onSubmit={(values, formikBag) => {
-            dispatch(fetchLogin(values));
-            console.log({ values });
+            dispatch(fetchAddKids(values));
+            console.log(values);
 
             formikBag.resetForm();
           }}
         >
           {({ errors, touched, isValidating }) => (
             <Form className={styles.wrapperForm}>
-              <label htmlFor={emailFieldId}>Email</label>
+              <label htmlFor={firstNameFieldId}>First Name</label>
               <Field
                 className={styles.input}
-                name="email"
+                name="first_name"
                 maxLength={20}
-                id={emailFieldId}
+                id={firstNameFieldId}
               />
               <ErrorMessage
-                name="email"
+                name="first_name"
                 component="div"
                 className={styles.error}
+              />
+
+              <label htmlFor={lastNameFieldId}>Last name</label>
+              <Field
+                className={styles.input}
+                name="last_name"
+                maxLength={20}
+                id={lastNameFieldId}
               />
 
               <label htmlFor={passwordFieldId}>Password</label>
@@ -79,9 +86,6 @@ const LoginForm = () => {
               <button className={styles.button} type="submit">
                 Submit
               </button>
-              <Link to="/registration" className={styles.registration}>
-                Registration Form
-              </Link>
             </Form>
           )}
         </Formik>
@@ -90,4 +94,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default AddKidsForm;

@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import KidsPage from "./pages/KidsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import ParentsPage from "./pages/ParentsPage";
+import AddKids from "./pages/AddKidsPage";
 import RegisterPage from "./pages/AuthPages/RegistrationPage/RegistrationPage";
 import LoginPage from "./pages/AuthPages/LoginPage/LoginPage";
 import PublicRoute from "./utils/Routes/PublicRoute";
@@ -24,6 +25,7 @@ function App() {
             <Route path="/kids" element={<KidsPage />} />
             <Route path="/parents" element={<ParentsPage />} />
             <Route path="*" element={<NotFoundPage />} />
+            <Route path="/addkids" element={<AddKids />} />
           </Route>
         </Routes>
       </Suspense>

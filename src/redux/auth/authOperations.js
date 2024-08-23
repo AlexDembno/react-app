@@ -1,6 +1,11 @@
-import { createAsyncThunk, current } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { register, login, logout } from "../../shared/services/api/auth";
+import {
+  register,
+  login,
+  logout,
+  current,
+} from "../../shared/services/api/auth";
 
 export const fetchRegister = createAsyncThunk(
   "auth/register",
@@ -35,6 +40,7 @@ export const fetchCurrent = createAsyncThunk(
 
       const response = await current(auth.accessToken);
       console.log("responce", response);
+      return response;
     } catch ({ response }) {
       return rejectWithValue(response.data);
     }

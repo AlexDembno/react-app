@@ -8,8 +8,11 @@ import ParentsPage from "./pages/ParentsPage";
 import AddKids from "./pages/AddKidsPage";
 import RegisterPage from "./pages/AuthPages/RegistrationPage/RegistrationPage";
 import LoginPage from "./pages/AuthPages/LoginPage/LoginPage";
+import KidsLoginPage from "./pages/AuthPages/KidsLoginPage/KidsLoginPage";
 import PublicRoute from "./utils/Routes/PublicRoute";
 import PrivatRoute from "./utils/Routes/PrivatRoute";
+import KidsPublicRoute from "./utils/Routes/KidsPublicRoute";
+import KidsPrivatRoute from "./utils/Routes/KidsPrivatRoute";
 
 function App() {
   return (
@@ -22,10 +25,15 @@ function App() {
           </Route>
           <Route element={<PrivatRoute />}>
             <Route path="/" element={<HomePage />} />
-            <Route path="/kids" element={<KidsPage />} />
             <Route path="/parents" element={<ParentsPage />} />
             <Route path="*" element={<NotFoundPage />} />
             <Route path="/addkids" element={<AddKids />} />
+          </Route>
+          <Route element={<KidsPrivatRoute />}>
+            <Route path="/kids" element={<KidsPage />} />
+          </Route>
+          <Route element={<KidsPublicRoute />}>
+            <Route path="/kidslogin" element={<KidsLoginPage />} />
           </Route>
         </Routes>
       </Suspense>

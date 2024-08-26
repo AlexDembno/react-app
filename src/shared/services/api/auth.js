@@ -38,7 +38,6 @@ export const current = async (token) => {
   try {
     setToken(token);
     const { data } = await instance.get("/auth/current");
-    console.log("data", data);
     return data;
   } catch (error) {
     setToken();
@@ -48,7 +47,7 @@ export const current = async (token) => {
 
 export const logout = async () => {
   try {
-    const data = await instance.get("/auth/logout");
+    const data = await instance.post("/auth/logout");
     console.log("data", data);
     setToken();
   } catch (error) {

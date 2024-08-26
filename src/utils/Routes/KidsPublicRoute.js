@@ -4,23 +4,12 @@ import { useSelector } from "react-redux";
 
 import LoaderComponent from "../../components/Loader";
 
-const PublicRoute = () => {
-  const { isLogin } = useSelector((state) => state.auth);
-  const { accessToken } = useSelector((state) => state.auth);
-
+const KidsPublicRoute = () => {
   const { isKidsLogin } = useSelector((state) => state.kids);
   const { kidsAccessToken } = useSelector((state) => state.kids);
-  console.log("isLogin", isLogin);
-  if (!isLogin && accessToken) {
-    return <LoaderComponent />;
-  }
 
   if (!isKidsLogin && kidsAccessToken) {
     return <LoaderComponent />;
-  }
-
-  if (isLogin && accessToken) {
-    return <Navigate to="/parents" />;
   }
 
   if (isKidsLogin && kidsAccessToken) {
@@ -30,4 +19,4 @@ const PublicRoute = () => {
   return <Outlet />;
 };
 
-export default PublicRoute;
+export default KidsPublicRoute;

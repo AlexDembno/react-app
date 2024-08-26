@@ -2,20 +2,17 @@ import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
 import LoaderComponent from "../../components/Loader";
 
-const PrivatRoute = () => {
-  const { isLogin } = useSelector((state) => state.auth);
-  const { accessToken } = useSelector((state) => state.auth);
-
+const KidsPrivatRoute = () => {
   const { isKidsLogin } = useSelector((state) => state.kids);
   const { kidsAccessToken } = useSelector((state) => state.kids);
   console.log("isKidsLogin", isKidsLogin);
   console.log("kidsAccessToken", kidsAccessToken);
 
-  if (!isLogin && accessToken) {
+  if (!isKidsLogin && kidsAccessToken) {
     return <LoaderComponent />;
   }
 
-  if (!isLogin && !accessToken) {
+  if (!isKidsLogin && !kidsAccessToken) {
     console.log("true");
 
     return <Navigate to="/login" />;
@@ -24,4 +21,4 @@ const PrivatRoute = () => {
   return <Outlet />;
 };
 
-export default PrivatRoute;
+export default KidsPrivatRoute;

@@ -1,7 +1,8 @@
 import { createContext } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Header from "../../components/Header";
-
+import { fetchLogout } from "../../redux/auth/authOperations";
 import styles from "./ParentsPage.module.scss";
 
 import Main from "../../components/Main";
@@ -25,14 +26,17 @@ const ParentsPage = () => {
   //   console.log("getAllTasks", getAllTasks());
   // };
 
-  // useEffect(() => {
-  //   dispatch(fetchAlltaskList());
-  //   dispatch(fetchAlltasks());
-  // }, [dispatch]);
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(fetchLogout());
+  };
 
   return (
     <>
       <div className={styles.wrapper}>
+        <button onClick={handleLogout} type="button">
+          Logout
+        </button>
         <Link to="/" className={styles.link}>
           Go Home
         </Link>

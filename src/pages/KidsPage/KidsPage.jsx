@@ -3,12 +3,12 @@ import Header from "../../components/Header";
 import Main from "../../components/Main";
 import styles from "./KidsPage.module.scss";
 import { useDispatch } from "react-redux";
-import { fetchLogout } from "../../redux/auth/authOperations";
+import { fetchKidsLogout } from "../../redux/kids/kidsOperations";
 
 const KidsPage = () => {
   const dispatch = useDispatch();
   const handleLogout = () => {
-    dispatch(fetchLogout());
+    dispatch(fetchKidsLogout());
   };
   return (
     <div className={styles.wrapper}>

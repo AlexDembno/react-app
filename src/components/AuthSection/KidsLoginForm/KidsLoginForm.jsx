@@ -2,24 +2,22 @@ import { useId } from "react";
 import { Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
-import { fetchLogin } from "../../../redux/auth/authOperations";
+import { fetchKidsLogin } from "../../../redux/kids/kidsOperations";
 import "react-datepicker/dist/react-datepicker.css";
-import styles from "./LoginForm.module.scss";
+import styles from "./KidsLoginForm.module.scss";
 
-const LoginForm = () => {
+const KidsLoginForm = () => {
   const dispatch = useDispatch();
-  const emailFieldId = useId();
+  const firstNameFieldId = useId();
   const passwordFieldId = useId();
 
   const validate = (values) => {
     const errors = {};
 
-    if (!values.email) {
-      errors.email = "Required";
-    } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-    ) {
-      errors.email = "Invalid email address";
+    if (!values.first_name) {
+      errors.first_name = "Required";
+    } else if (values.first_name === "admin") {
+      errors.first_name = "Nice try!";
     }
 
     if (!values.password) {
@@ -33,16 +31,16 @@ const LoginForm = () => {
 
   return (
     <div className={styles.wrapperPage}>
-      <h2 className={styles.text}>Login Form</h2>
+      <h2 className={styles.text}>Kids Login Form</h2>
       <div className={styles.container}>
         <Formik
           initialValues={{
-            email: "",
+            first_name: "",
             password: "",
           }}
           validate={validate}
           onSubmit={(values, formikBag) => {
-            dispatch(fetchLogin(values));
+            dispatch(fetchKidsLogin(values));
             console.log({ values });
 
             formikBag.resetForm();
@@ -50,15 +48,15 @@ const LoginForm = () => {
         >
           {({ errors, touched, isValidating }) => (
             <Form className={styles.wrapperForm}>
-              <label htmlFor={emailFieldId}>Email</label>
+              <label htmlFor={firstNameFieldId}>First Name</label>
               <Field
                 className={styles.input}
-                name="email"
+                name="first_name"
                 maxLength={20}
-                id={emailFieldId}
+                id={firstNameFieldId}
               />
               <ErrorMessage
-                name="email"
+                name="first_name"
                 component="div"
                 className={styles.error}
               />
@@ -82,8 +80,8 @@ const LoginForm = () => {
               <Link to="/registration" className={styles.registration}>
                 Registration Form
               </Link>
-              <Link to="/kidsLogin" className={styles.registration}>
-                Kids Login Form
+              <Link to="/login" className={styles.registration}>
+                Login Form
               </Link>
             </Form>
           )}
@@ -93,4 +91,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default KidsLoginForm;

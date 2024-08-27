@@ -1,8 +1,8 @@
 import instance from "./instance";
 
-export const getAllTasks = async () => {
+export const getAllTasks = async (userId) => {
   try {
-    const { data } = await instance.get("/tasks");
+    const { data } = await instance.get(`/tasks/${userId}`);
     return data;
   } catch (error) {
     return error.messege;

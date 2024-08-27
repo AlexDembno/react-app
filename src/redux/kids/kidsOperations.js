@@ -25,6 +25,8 @@ export const fetchKidsLogin = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const response = await kidsLogin(data);
+      console.log(response);
+
       return response;
     } catch ({ response }) {
       return thunkAPI.rejectWithValue(response.data);

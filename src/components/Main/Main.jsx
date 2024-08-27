@@ -20,13 +20,22 @@ const Main = () => {
   const dispatch = useDispatch();
   const tasksList = useSelector((state) => state.tasksList.items);
   const isLoading = useSelector((state) => state.tasksList.loading);
-  const isLogin = useSelector((state) => state.auth.isLogin);
-  console.log("isLogin", isLogin);
+  // const isLogin = useSelector((state) => state.auth.isLogin);
+
+  const authUserId = useSelector((state) => state.auth.userId);
+  console.log("authUserId", authUserId);
+
+  const kidsUserId = useSelector((state) => state.kids.userId);
+  console.log("kidsUserId", kidsUserId);
+  const userId = authUserId || kidsUserId || "";
+
+  // const userId = useSelector((state) => state.kids.userId);
+  console.log("userId", userId);
 
   useEffect(() => {
-    dispatch(fetchAlltaskList());
-    dispatch(fetchAlltasks());
-  }, [dispatch]);
+    dispatch(fetchAlltaskList(userId));
+    dispatch(fetchAlltasks(userId));
+  }, [dispatch, userId]);
 
   if (isLoading) {
     return <LoaderComponent />;

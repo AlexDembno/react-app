@@ -7,9 +7,11 @@ import {
 
 export const fetchAlltaskList = createAsyncThunk(
   "tasksList/getAll",
-  async (_, thunkAPI) => {
+  async (userId, thunkAPI) => {
+    console.log("fetchAlltaskList", userId);
+
     try {
-      const response = await getAllTaskLists();
+      const response = await getAllTaskLists(userId);
       return response;
     } catch ({ response }) {
       return thunkAPI.rejectWithValue(response.data);

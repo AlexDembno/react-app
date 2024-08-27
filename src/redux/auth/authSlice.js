@@ -8,6 +8,7 @@ import {
 
 const initialState = {
   accessToken: "",
+  userId: "",
   isLogin: false,
   loading: false,
   error: null,
@@ -29,6 +30,7 @@ const authSlice = createSlice({
         state.loading = false;
         state.isLogin = true;
         state.accessToken = action.payload.accessToken;
+        state.userId = action.payload.userId;
       })
       .addCase(fetchRegister.rejected, (state, action) => {
         state.loading = false;
@@ -44,6 +46,7 @@ const authSlice = createSlice({
         state.loading = false;
         state.isLogin = true;
         state.accessToken = action.payload.accessToken;
+        state.userId = action.payload.userId;
       })
       .addCase(fetchLogin.rejected, (state, action) => {
         state.loading = false;
@@ -57,6 +60,7 @@ const authSlice = createSlice({
         state.loading = false;
         state.isLogin = true;
         state.accessToken = action.payload.accessToken;
+        state.userId = action.payload.userId;
       })
       .addCase(fetchCurrent.rejected, (state, action) => {
         state.loading = false;
@@ -70,6 +74,7 @@ const authSlice = createSlice({
         state.loading = false;
         state.isLogin = false;
         state.accessToken = "";
+        state.userId = "";
       })
       .addCase(fetchLogout.rejected, (state, action) => {
         state.loading = false;

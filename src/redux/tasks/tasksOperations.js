@@ -10,9 +10,9 @@ import {
 
 export const fetchAlltasks = createAsyncThunk(
   "tasks/getAll",
-  async (_, thunkAPI) => {
+  async (userid, thunkAPI) => {
     try {
-      const response = await getAllTasks();
+      const response = await getAllTasks(userid);
       return response;
     } catch ({ response }) {
       return thunkAPI.rejectWithValue(response.data);
@@ -23,6 +23,8 @@ export const fetchAlltasks = createAsyncThunk(
 export const fetchAddTasks = createAsyncThunk(
   "tasks/AddTasks",
   async (task, thunkAPI) => {
+    console.log("task", task);
+
     try {
       const response = await addTask(task);
       return response;
@@ -67,4 +69,3 @@ export const fetchEditTask = createAsyncThunk(
     }
   }
 );
-

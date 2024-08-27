@@ -3,10 +3,12 @@ import {
   fetchAddKids,
   fetchKidsLogin,
   fetchKidsLogout,
+  fetchKidsCurrent,
 } from "./kidsOperations";
 
 const initialState = {
   kidsAccessToken: "",
+  userId: "",
   isKidsLogin: false,
   loading: false,
   error: null,
@@ -43,8 +45,23 @@ const kidsSlice = createSlice({
         state.loading = false;
         state.isKidsLogin = true;
         state.kidsAccessToken = action.payload.accessToken;
+        state.userId = action.payload.userId;
       })
       .addCase(fetchKidsLogin.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(fetchKidsCurrent.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchKidsCurrent.fulfilled, (state, action) => {
+        state.loading = false;
+        state.isKidsLogin = true;
+        state.kidsAccessToken = action.payload.accessToken;
+        state.userId = action.payload.userId;
+      })
+      .addCase(fetchKidsCurrent.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
@@ -56,6 +73,7 @@ const kidsSlice = createSlice({
         state.loading = false;
         state.isKidsLogin = false;
         state.kidsAccessToken = "";
+        state.userId = "";
       })
       .addCase(fetchKidsLogout.rejected, (state, action) => {
         state.loading = false;

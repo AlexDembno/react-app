@@ -1,8 +1,12 @@
 import instance from "./instance";
 
-export const getAllTaskLists = async () => {
+export const getAllTaskLists = async (userId) => {
+  console.log("getAllTaskLists", userId);
+
   try {
-    const { data } = await instance.get("/tasksList");
+    const { data } = await instance.get(`/tasksList/${userId}`);
+    console.log("data", data);
+
     return data;
   } catch (error) {
     return error.messege;

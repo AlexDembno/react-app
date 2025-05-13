@@ -10,7 +10,7 @@ const setToken = (token) => {
 export const kidsLogin = async (data) => {
   try {
     const { data: result } = await instance.post("/kids/login", data);
-    console.log(result);
+
     setToken(result.accessToken);
     localStorage.setItem("KidsAccessToken", result.accessToken);
     return result;
@@ -20,26 +20,21 @@ export const kidsLogin = async (data) => {
 };
 
 export const kidsCurrent = async (token) => {
-  console.log("token", token);
+  console.log("tokenkidsCurrent", token);
   try {
     setToken(token);
-    const { data } = await instance.get("/kids/current");
-    return data;
+    const response = await instance.get("/kids/current");
+    console.log("response/current", response);
+    return response;
   } catch (error) {
     setToken();
-    return error.messege;
+    return error.message;
   }
 };
 
 export const kidsLogout = async () => {
   try {
-    console.log(
-      "instance.defaults.headers.authorization",
-      instance.defaults.headers.authorization
-    );
-
-    const data = await instance.post("/kids/logout");
-    console.log("data", data);
+    await instance.post("/kids/logout");
     setToken();
   } catch (error) {
     return error.messege;

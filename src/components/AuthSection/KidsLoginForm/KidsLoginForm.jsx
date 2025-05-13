@@ -41,7 +41,6 @@ const KidsLoginForm = () => {
           validate={validate}
           onSubmit={(values, formikBag) => {
             dispatch(fetchKidsLogin(values));
-            console.log({ values });
 
             formikBag.resetForm();
           }}

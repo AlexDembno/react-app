@@ -10,12 +10,12 @@ import {
 
 export const fetchAlltasks = createAsyncThunk(
   "tasks/getAll",
-  async (userid, thunkAPI) => {
+  async (childId, thunkAPI) => {
     try {
-      const response = await getAllTasks(userid);
+      const response = await getAllTasks(childId);
       return response;
     } catch ({ response }) {
-      return thunkAPI.rejectWithValue(response.data);
+      return thunkAPI.rejectWithValue(response?.data || "Failed to load tasks");
     }
   }
 );
@@ -23,8 +23,6 @@ export const fetchAlltasks = createAsyncThunk(
 export const fetchAddTasks = createAsyncThunk(
   "tasks/AddTasks",
   async (task, thunkAPI) => {
-    console.log("task", task);
-
     try {
       const response = await addTask(task);
       return response;

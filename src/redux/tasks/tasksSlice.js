@@ -35,7 +35,6 @@ const tasksSlice = createSlice({
     //   return items.filter((task) => task.id !== action.payload);
     // },
     changeStatus({ items }, action) {
-      console.log("changeStatus", action.payload);
       // const index = items.findIndex((task) => task.id === action.payload.id);
       // const result = items.find((task) => task.id === action.payload.id);
       // const updatedTask = {
@@ -59,7 +58,6 @@ const tasksSlice = createSlice({
     //   return [...items.slice(0, index), newTask, ...items.slice(index + 1)];
     // },
     editTask(state, action) {
-      console.log("editTask", action.payload);
       const task = state.items.find(
         (task) => task.id === action.payload.taskId
       );

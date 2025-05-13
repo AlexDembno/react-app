@@ -8,15 +8,14 @@ const PrivatRoute = () => {
 
   const { isKidsLogin } = useSelector((state) => state.kids);
   const { kidsAccessToken } = useSelector((state) => state.kids);
-  console.log("isKidsLogin", isKidsLogin);
-  console.log("kidsAccessToken", kidsAccessToken);
+
 
   if (!isLogin && accessToken) {
     return <LoaderComponent />;
   }
 
   if (!isLogin && !accessToken) {
-    console.log("true");
+
 
     return <Navigate to="/login" />;
   }

@@ -25,7 +25,6 @@ export const fetchKidsLogin = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const response = await kidsLogin(data);
-      console.log(response);
 
       return response;
     } catch ({ response }) {
@@ -40,9 +39,16 @@ export const fetchKidsCurrent = createAsyncThunk(
     try {
       const { kids } = getState();
       const response = await kidsCurrent(kids.kidsAccessToken);
-      return response;
-    } catch ({ response }) {
-      return rejectWithValue(response.data);
+      console.log("response/current", response);
+
+      return response.data;
+    } catch (error) {
+      const message =
+        error.response?.data?.message ||
+        error.response?.data ||
+        error.message ||
+        "Unknown error";
+      return rejectWithValue(message);
     }
   },
   {

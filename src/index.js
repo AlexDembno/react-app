@@ -8,6 +8,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { BrowserRouter } from "react-router-dom";
 import AuthLayout from "./components/AuthLayout/AuthLayout";
 import LoaderComponent from "./components/Loader";
+import { NotificationProvider } from "./components/NotificationContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -16,7 +17,9 @@ root.render(
       <PersistGate loading={<LoaderComponent />} persistor={persistor}>
         <AuthLayout>
           <BrowserRouter basename="/React-App">
-            <App />
+            <NotificationProvider>
+              <App />
+            </NotificationProvider>
           </BrowserRouter>
         </AuthLayout>
       </PersistGate>

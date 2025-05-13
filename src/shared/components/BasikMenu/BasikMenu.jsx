@@ -8,7 +8,7 @@ import Add from "@mui/icons-material/Add";
 import Delete from "@mui/icons-material/Delete";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { fetchDeleteTask } from "../../../redux/tasks/tasksOperations";
-import { TaskListContext } from "../../../components/Main/Main";
+import TaskListContext from "../Context/TaskListContext";
 import { fetchDeleteTaskList } from "../../../redux/taskList/taskListOperations";
 import useModal from "../../hooks/useModal";
 import Modal from "../Modal";
@@ -26,6 +26,8 @@ export default function BasicMenu({ name, taskId, handleAddTaskList }) {
   };
 
   const { taskListData, taskListNameData } = React.useContext(TaskListContext);
+  console.log("taskListData", taskListData);
+  console.log("taskListNameData", taskListNameData);
 
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);

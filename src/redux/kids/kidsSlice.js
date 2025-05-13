@@ -41,6 +41,7 @@ const kidsSlice = createSlice({
       })
       .addCase(fetchKidsLogin.fulfilled, (state, action) => {
         console.log("action.payload.accessToken", action.payload.accessToken);
+        console.log("action.payload", action.payload);
 
         state.loading = false;
         state.isKidsLogin = true;

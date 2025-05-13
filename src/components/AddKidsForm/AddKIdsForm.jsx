@@ -2,11 +2,13 @@ import { useId } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
 import { fetchAddKids } from "../../redux/kids/kidsOperations";
+import { useNotification } from "../NotificationContext";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./AddKidsForm.module.scss";
 
 const AddKidsForm = () => {
   const dispatch = useDispatch();
+  const { showNotification } = useNotification();
   const firstNameFieldId = useId();
   const lastNameFieldId = useId();
   const passwordFieldId = useId();
@@ -40,11 +42,15 @@ const AddKidsForm = () => {
             password: "",
           }}
           validate={validate}
-          onSubmit={(values, formikBag) => {
-            dispatch(fetchAddKids(values));
-            console.log(values);
+          onSubmit={async (values, formikBag) => {
+            const result = await dispatch(fetchAddKids(values));
 
-            formikBag.resetForm();
+            if (fetchAddKids.fulfilled.match(result)) {
+              formikBag.resetForm();
+              showNotification("Дитину додано успішно!", "success");
+            } else {
+              showNotification("Помилка при додаванні дитини", "error");
+            }
           }}
         >
           {({ errors, touched, isValidating }) => (

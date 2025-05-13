@@ -63,7 +63,6 @@ const RegisterForm = () => {
                 status: values.status === "true",
               })
             );
-            console.log({ values });
 
             formik.resetForm();
           }}

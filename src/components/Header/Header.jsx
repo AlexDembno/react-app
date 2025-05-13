@@ -1,7 +1,5 @@
-import React from "react";
 import ButtonUsage from "../../shared/components/Button";
 import styles from "./Header.module.scss";
-import ThreeSixtyIcon from "@mui/icons-material/ThreeSixty";
 import Add from "@mui/icons-material/Add";
 import CreateNewList from "../CreateNewList";
 
@@ -22,12 +20,6 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <h1 className={styles.title}>My Task Bord</h1>
-      {/* <ButtonUsage
-        startIcon={<ThreeSixtyIcon />}
-        variant={"outlined"}
-        props={"History"}
-        style={{ marginRight: "5px" }}
-      /> */}
       <ButtonUsage
         startIcon={<Add />}
         variant={"contained"}

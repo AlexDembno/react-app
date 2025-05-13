@@ -4,6 +4,7 @@ import {
   fetchLogin,
   fetchCurrent,
   fetchLogout,
+  fetchUserKids,
 } from "./authOperations";
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
   isLogin: false,
   loading: false,
   error: null,
+  userKids: [],
 };
 
 const authSlice = createSlice({
@@ -25,8 +27,6 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchRegister.fulfilled, (state, action) => {
-        console.log("action", action.payload.accessToken);
-
         state.loading = false;
         state.isLogin = true;
         state.accessToken = action.payload.accessToken;
@@ -41,8 +41,6 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchLogin.fulfilled, (state, action) => {
-        console.log("action.payload.accessToken", action.payload.accessToken);
-
         state.loading = false;
         state.isLogin = true;
         state.accessToken = action.payload.accessToken;
@@ -77,6 +75,20 @@ const authSlice = createSlice({
         state.userId = "";
       })
       .addCase(fetchLogout.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(fetchUserKids.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchUserKids.fulfilled, (state, action) => {
+        console.log("action.payload", action.payload);
+
+        state.loading = false;
+        state.userKids = action.payload;
+      })
+      .addCase(fetchUserKids.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

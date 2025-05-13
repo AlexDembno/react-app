@@ -7,14 +7,14 @@ import {
 
 export const fetchAlltaskList = createAsyncThunk(
   "tasksList/getAll",
-  async (userId, thunkAPI) => {
-    console.log("fetchAlltaskList", userId);
-
+  async (childId, thunkAPI) => {
     try {
-      const response = await getAllTaskLists(userId);
+      const response = await getAllTaskLists(childId);
       return response;
     } catch ({ response }) {
-      return thunkAPI.rejectWithValue(response.data);
+      return thunkAPI.rejectWithValue(
+        response?.data || "Failed to load task lists"
+      );
     }
   }
 );

@@ -5,6 +5,7 @@ import {
   login,
   logout,
   current,
+  getUserKids,
 } from "../../shared/services/api/auth";
 
 export const fetchRegister = createAsyncThunk(
@@ -24,7 +25,6 @@ export const fetchLogin = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const response = await login(data);
-      console.log("response", response);
 
       return response;
     } catch ({ response }) {
@@ -63,6 +63,19 @@ export const fetchLogout = createAsyncThunk(
       return response;
     } catch ({ response }) {
       return thunkAPI.rejectWithValue(response.data);
+    }
+  }
+);
+
+export const fetchUserKids = createAsyncThunk(
+  "auth/children",
+  async (_, { rejectWithValue, getState }) => {
+    try {
+      const { auth } = getState();
+      const response = await getUserKids(auth.accessToken);
+      return response;
+    } catch ({ response }) {
+      return rejectWithValue(response.data);
     }
   }
 );

@@ -3,10 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import TaskEntrails from "../TaskEntrails";
 import { fetchAlltaskList } from "../../redux/taskList/taskListOperations";
 import { fetchAlltasks } from "../../redux/tasks/tasksOperations";
+import TaskListContext from "../../shared/components/Context/TaskListContext";
 import LoaderComponent from "../../components/Loader";
-import styles from "./Main.module.scss";
-
-export const TaskListContext = createContext();
+import styles from "./MainKids.module.scss";
 
 const TaskListProvider = ({ children, taskListData, taskListNameData }) => {
   return (
@@ -16,20 +15,14 @@ const TaskListProvider = ({ children, taskListData, taskListNameData }) => {
   );
 };
 
-const Main = () => {
+const MainKids = () => {
   const dispatch = useDispatch();
   const tasksList = useSelector((state) => state.tasksList.items);
   const isLoading = useSelector((state) => state.tasksList.loading);
   // const isLogin = useSelector((state) => state.auth.isLogin);
 
-  const authUserId = useSelector((state) => state.auth.userId);
-  console.log("authUserId", authUserId);
+  const userId = useSelector((state) => state.kids.userId);
 
-  const kidsUserId = useSelector((state) => state.kids.userId);
-  console.log("kidsUserId", kidsUserId);
-  const userId = authUserId || kidsUserId || "";
-
-  // const userId = useSelector((state) => state.kids.userId);
   console.log("userId", userId);
 
   useEffect(() => {
@@ -44,7 +37,11 @@ const Main = () => {
   const list = (tasksList || []).map(({ id, task_list_name }) => (
     <li className={styles.list} key={id}>
       <TaskListProvider taskListData={id} taskListNameData={task_list_name}>
-        <TaskEntrails taskStatus={task_list_name} ListName={task_list_name} />
+        <TaskEntrails
+          listId={id}
+          taskStatus={task_list_name}
+          ListName={task_list_name}
+        />
       </TaskListProvider>
     </li>
   ));
@@ -56,4 +53,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default MainKids;

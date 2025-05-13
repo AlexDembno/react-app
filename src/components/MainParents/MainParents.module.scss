@@ -1,0 +1,78 @@
+.main {
+  margin-left: auto;
+  margin-right: auto;
+
+  @media screen and (min-width: 768px) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.wrapper {
+  @media screen and (min-width: 768px) {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-content: flex-start;
+  }
+}
+
+.list {
+  margin-bottom: 10px;
+  // background-color: rgba(14, 79, 109, 0.5); /* Прозрачный белый цвет */
+  // padding: 10px;
+  background-color: #f3f4f7; /* Обычный белый цвет фона */
+  border-radius: 10px;
+  border: 1px solid rgb(59, 82, 214);
+  @media screen and (min-width: 768px) {
+    margin-bottom: 0;
+  }
+}
+
+.kidSelect {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.kidTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.kidList {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.kidItem {
+  list-style: none;
+}
+
+.kidButton {
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #2563eb;
+  }
+}
+
+.selectedKidInfo {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-left: 4px solid #3b82f6;
+  background-color: #eaf0fb;
+  font-size: 1rem;
+  color: #333;
+}

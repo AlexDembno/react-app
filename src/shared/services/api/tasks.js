@@ -1,11 +1,11 @@
 import instance from "./instance";
 
-export const getAllTasks = async (userId) => {
+export const getAllTasks = async (childId) => {
   try {
-    const { data } = await instance.get(`/tasks/${userId}`);
+    const { data } = await instance.get(`/tasks/${childId}`);
     return data;
   } catch (error) {
-    return error.messege;
+    return error.message;
   }
 };
 

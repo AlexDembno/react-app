@@ -10,7 +10,7 @@ const PublicRoute = () => {
 
   const { isKidsLogin } = useSelector((state) => state.kids);
   const { kidsAccessToken } = useSelector((state) => state.kids);
-  console.log("isLogin", isLogin);
+
   if (!isLogin && accessToken) {
     return <LoaderComponent />;
   }

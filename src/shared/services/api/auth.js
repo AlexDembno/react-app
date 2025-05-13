@@ -10,7 +10,7 @@ const setToken = (token) => {
 export const register = async (data) => {
   try {
     const { data: result } = await instance.post("/auth/register", data);
-    console.log("result", result);
+
     setToken(result.accessToken);
     localStorage.setItem("accessToken", result.accessToken);
     return result;
@@ -20,11 +20,9 @@ export const register = async (data) => {
 };
 
 export const login = async (data) => {
-  console.log("data", data);
-
   try {
     const { data: result } = await instance.post("/auth/login", data);
-    console.log("result", result);
+
     setToken(result.accessToken);
     localStorage.setItem("accessToken", result.accessToken);
     return result;
@@ -34,7 +32,6 @@ export const login = async (data) => {
 };
 
 export const current = async (token) => {
-  console.log("token", token);
   try {
     setToken(token);
     const { data } = await instance.get("/auth/current");
@@ -48,7 +45,7 @@ export const current = async (token) => {
 export const logout = async () => {
   try {
     const data = await instance.post("/auth/logout");
-    console.log("data", data);
+
     setToken();
   } catch (error) {
     return error.messege;
@@ -57,13 +54,22 @@ export const logout = async () => {
 
 export const addKids = async (data, token) => {
   try {
-    console.log(instance.defaults.headers.authorization);
-
     // setToken(token);
     const { data: result } = await instance.post("/auth/addkids", data);
-    console.log(result);
+
     return result;
   } catch (error) {
+    return error.messege;
+  }
+};
+
+export const getUserKids = async (token) => {
+  try {
+    setToken(token);
+    const { data } = await instance.get("/auth/children");
+    return data;
+  } catch (error) {
+    setToken();
     return error.messege;
   }
 };

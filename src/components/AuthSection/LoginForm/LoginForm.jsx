@@ -43,7 +43,6 @@ const LoginForm = () => {
           validate={validate}
           onSubmit={(values, formikBag) => {
             dispatch(fetchLogin(values));
-            console.log({ values });
 
             formikBag.resetForm();
           }}

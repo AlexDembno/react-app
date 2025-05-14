@@ -23,6 +23,8 @@ export const fetchAlltasks = createAsyncThunk(
 export const fetchAddTasks = createAsyncThunk(
   "tasks/AddTasks",
   async (task, thunkAPI) => {
+    console.log("task", task);
+
     try {
       const response = await addTask(task);
       return response;

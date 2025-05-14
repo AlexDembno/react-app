@@ -25,8 +25,10 @@ const ParentsPage = () => {
       <Link to="/" className={styles.link}>
         Go Home
       </Link>
-      <Header />
-      <h2 className={styles.kidTitle}>Выберите ребёнка</h2>
+      <Header childId={selectedKidId} />
+      {children.length !== 0 && (
+        <h2 className={styles.kidTitle}>Select a child</h2>
+      )}
 
       <ul className={styles.kidList}>
         {children.map((child) => (

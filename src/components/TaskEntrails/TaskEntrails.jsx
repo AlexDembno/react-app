@@ -8,7 +8,7 @@ import CreateNewTask from "../CreateNewTask";
 import useModal from "../../shared/hooks/useModal";
 import styles from "./TaskEntrails.module.scss";
 
-const TaskEntrails = ({ taskStatus, listId, ListName }) => {
+const TaskEntrails = ({ taskStatus, listId, ListName, childId }) => {
   const { isOpen, openModal, closeModal } = useModal();
   const tasks = useSelector((state) => state.tasks.items);
 
@@ -36,6 +36,7 @@ const TaskEntrails = ({ taskStatus, listId, ListName }) => {
         name={taskStatus}
         listId={listId}
         quantity={filteredTasks.length}
+        childId={childId}
       />
       <ButtonUsage
         startIcon={<Add />}
@@ -51,6 +52,7 @@ const TaskEntrails = ({ taskStatus, listId, ListName }) => {
             closeModal={handlCloseModal}
             ListName={ListName}
             actionName={"Create New Task"}
+            childId={childId}
           />
         </Modal>
       )}

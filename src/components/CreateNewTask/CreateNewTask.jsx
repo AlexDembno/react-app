@@ -11,7 +11,15 @@ import { format } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./CreateNewTask.module.scss";
 
-const CreateNewTask = ({ actionName, closeModal, ListName, taskId }) => {
+const CreateNewTask = ({
+  actionName,
+  closeModal,
+  ListName,
+  taskId,
+  childId,
+}) => {
+  console.log("child_id", childId);
+
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState("");
   const nameFieldId = useId();
@@ -50,6 +58,7 @@ const CreateNewTask = ({ actionName, closeModal, ListName, taskId }) => {
               actionName === "Create New Task"
                 ? fetchAddTasks({
                     ...values,
+                    child_id: childId,
                     startDate: formattedStartDate || "",
                   })
                 : fetchEditTask({

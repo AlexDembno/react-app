@@ -25,9 +25,11 @@ export default function BasicMenu({ name, taskId, handleAddTaskList }) {
     closeModal();
   };
 
-  const { taskListData, taskListNameData } = React.useContext(TaskListContext);
+  const { taskListData, taskListNameData, child_id } =
+    React.useContext(TaskListContext);
   console.log("taskListData", taskListData);
   console.log("taskListNameData", taskListNameData);
+  console.log("child_id", child_id);
 
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -106,6 +108,7 @@ export default function BasicMenu({ name, taskId, handleAddTaskList }) {
             actionName={"Edit Task"}
             taskId={taskId}
             ListName={taskListNameData}
+            childId={child_id}
           />
         </Modal>
       )}

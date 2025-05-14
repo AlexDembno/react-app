@@ -21,7 +21,7 @@ const TasksName = ({ ...props }) => {
       <BasicMenu listId={props.listId} handleAddTaskList={handleAddTaskList} />
       {isOpen && (
         <Modal closeModal={handlCloseModal}>
-          <CreateNewList closeModal={handlCloseModal} />
+          <CreateNewList closeModal={handlCloseModal} childId={props.childId} />
         </Modal>
       )}
     </div>

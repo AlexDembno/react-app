@@ -6,7 +6,7 @@ import CreateNewList from "../CreateNewList";
 import Modal from "../../shared/components/Modal";
 import useModal from "../../shared/hooks/useModal";
 
-const Header = () => {
+const Header = ({ childId }) => {
   const { isOpen, openModal, closeModal } = useModal();
 
   const handleAddTaskList = () => {
@@ -29,7 +29,7 @@ const Header = () => {
 
       {isOpen && (
         <Modal closeModal={handlCloseModal}>
-          <CreateNewList closeModal={handlCloseModal} />
+          <CreateNewList closeModal={handlCloseModal} childId={childId} />
         </Modal>
       )}
     </header>

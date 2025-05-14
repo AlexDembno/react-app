@@ -4,7 +4,9 @@ import { Formik, Form, Field } from "formik";
 import { fetchAddtaskList } from "../../redux/taskList/taskListOperations";
 import styles from "./CreateNewList.module.scss";
 
-const CreateNewList = ({ closeModal }) => {
+const CreateNewList = ({ closeModal, childId }) => {
+  console.log("child_id", childId);
+
   const dispatch = useDispatch();
   const nameFieldId = useId();
   const validate = (value) => {
@@ -26,6 +28,7 @@ const CreateNewList = ({ closeModal }) => {
             dispatch(
               fetchAddtaskList({
                 ...values,
+                child_id: childId,
               })
             );
             formikBag.resetForm();

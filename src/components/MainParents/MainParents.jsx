@@ -7,9 +7,16 @@ import TaskListContext from "../../shared/components/Context/TaskListContext";
 import LoaderComponent from "../Loader";
 import styles from "./MainParents.module.scss";
 
-const TaskListProvider = ({ children, taskListData, taskListNameData }) => {
+const TaskListProvider = ({
+  children,
+  taskListData,
+  taskListNameData,
+  child_id,
+}) => {
   return (
-    <TaskListContext.Provider value={{ taskListData, taskListNameData }}>
+    <TaskListContext.Provider
+      value={{ taskListData, taskListNameData, child_id }}
+    >
       {children}
     </TaskListContext.Provider>
   );
@@ -35,8 +42,16 @@ const MainParents = ({ userId }) => {
 
   const list = (tasksList || []).map(({ id, task_list_name }) => (
     <li className={styles.list} key={id}>
-      <TaskListProvider taskListData={id} taskListNameData={task_list_name}>
-        <TaskEntrails taskStatus={task_list_name} ListName={task_list_name} />
+      <TaskListProvider
+        taskListData={id}
+        taskListNameData={task_list_name}
+        child_id={userId}
+      >
+        <TaskEntrails
+          taskStatus={task_list_name}
+          ListName={task_list_name}
+          childId={userId}
+        />
       </TaskListProvider>
     </li>
   ));

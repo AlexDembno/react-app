@@ -1,6 +1,5 @@
 .wrapperPage {
-  padding-top: 130px;
-  background-image: url("../../shared/images/Designer_upscayl_4x_realesrgan-x4plus.png");
+  background-image: url("../../shared/images/bg.webp");
   background-size: cover;
   background-color: #f8f6f3;
   background-position: 50% 50%;
@@ -8,6 +7,7 @@
   background-repeat: no-repeat;
   min-height: 100vh;
   margin: 0;
+  padding: 130px 16px 0 16px;
   @media screen and (min-width: 768px) {
     background-size: cover;
   }
@@ -28,7 +28,7 @@
   border-radius: 16px;
   border: 1px solid #007bff;
   background: var(--White, #fff);
-  overflow-x: auto;
+  // overflow-x: auto;
   box-shadow: var(--box-shadow);
 
   @media screen and (min-width: 768px) {

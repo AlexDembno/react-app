@@ -11,7 +11,7 @@ const KidsPrivatRoute = () => {
   }
 
   if (!isKidsLogin && !kidsAccessToken) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/" />;
   }
 
   return <Outlet />;

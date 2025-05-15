@@ -22,7 +22,7 @@ const ParentsPage = () => {
 
   return (
     <div className={styles.wrapper}>
-      <Link to="/" className={styles.link}>
+      <Link to="/home" className={styles.link}>
         Go Home
       </Link>
       <Header childId={selectedKidId} />

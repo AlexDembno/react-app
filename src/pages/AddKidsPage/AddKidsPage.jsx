@@ -5,7 +5,7 @@ import styles from "./AddKidsPage.module.scss";
 const AddKidsPage = () => {
   return (
     <div className={styles.wrapper}>
-      <Link to="/" className={styles.link}>
+      <Link to="/home" className={styles.link}>
         Go Home
       </Link>
       <AddKidsForm />

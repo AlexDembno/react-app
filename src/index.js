@@ -16,7 +16,7 @@ root.render(
     <Provider store={store}>
       <PersistGate loading={<LoaderComponent />} persistor={persistor}>
         <AuthLayout>
-          <BrowserRouter basename="/React-App">
+          <BrowserRouter>
             <NotificationProvider>
               <App />
             </NotificationProvider>
